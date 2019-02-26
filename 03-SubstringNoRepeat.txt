@@ -1,0 +1,223 @@
+//===================================================================================================//
+Longest Substring Without Repeating Characters 
+
+Given a string find the length of the longest substring without repeating characters. 
+
+Example
+Input: 		"abcabcbb"
+Output:		3
+Explanation:	The answer is "abc", with the length of 3
+
+Input:		"bbbbb"
+Output:		1
+Explanation:	The answer is "b", with the length of 1
+
+Input:		"pwwkew"
+Output:		3
+Explanation: 	The answer is "wke", with the length of 3. Note that the answer must be a substring
+		"pwke" is a subsequence and not a substring 
+
+
+//===================================================================================================//
+
+Approach 1: Brute Force 
+Checking all the substrings one by one to see if it has no duplicate character 
+
+Algorithm 
+
+
+Suppose we have a function "boolean allUnique(String substring)" which returns true if all the
+characters in the substring are unique and false otherwise. We can iterate through all the possible 
+substrings of the given string s and call the function allUnique. If it turns out to be true, then we 
+update our answer of the maximum length of substring without duplicate characters. 
+
+To enumerate all substrings of a given string we enumerate the start and end indices of them. Suppose
+the start and end indices are i and j respectively. Then we have 0 <= i <= j <= n. Thus using two 
+nested loops with i from 0 to n-1 and j from i+1 to n, we can enumerate all the substrings of s
+
+To check if one string has duplicate characters we can use a set. We iterate through all the 
+characters in the string and put them into the set one by one. Before putting one character, we check
+if the set already contains it. If so we return false and after the loop we return true.
+
+
+
+
+
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j <= n; j++)
+                if (allUnique(s, i, j)) ans = Math.max(ans, j - i);
+        return ans;
+    }
+
+    public boolean allUnique(String s, int start, int end) {
+        Set<Character> set = new HashSet<>();
+        for (int i = start; i < end; i++) {
+            Character ch = s.charAt(i);
+            if (set.contains(ch)) return false;
+            set.add(ch);
+        }
+        return true;
+    }
+}
+
+
+Complexity Analysis 
+
+Time Complexity:   O(n^3)	Verifying if characters in [i,j) are unique requires us to scan all of
+				them which would cost O(j-i) time. 
+
+				For a given i, the sum of time costed by each j -> [i+1,n] is 
+				"Summation from i+1 to n O(j-1)"
+
+				Thus, the sum of all the time consumption is: 
+				O(summation from 0 to n-1(summation from j=i+1 to n (j-1))) 
+				O(summation from i=0 to n-1(1+n-i)(n-i)/2)) = O(n^3)
+
+
+				*Note that the sum of all numbers up to n 1+2+3+...+n = n(n+1)/2
+
+
+Space Complexity:  O(min(n,m))	We require O(k) space for checking a substring has no duplicate 
+				characters, where k is the size of the set. The size of the Set is 
+				upper bounded by the size of the string n amd the size of the charset
+				or alphabet m 
+
+
+
+
+//===================================================================================================//
+
+Approach 2: Sliding Window 
+
+
+
+
+A sliding window is an abstract concept commonly used in array/string problems. A window is a range of 
+elements in the array/string which usually defined by the start and end indices
+
+ex. [i,j) left-closed, right-open
+
+A sliding window is a window that slides its two boundaries in a certain direction, for example if we
+slide [i,j) to the right by 1 element, then it becomes [i+1, j+1) - left closed, right open.
+
+
+
+Sliding Window approach, whenever we are looking at a section on an array usual to perform calculations
+we don't need to completely recalculate everything for every section of the array. Usually we can use
+the value obtained from another section of the array to determine something about this section of the 
+array. For example if we are calculating the sum of sections of an array we can use the previously 
+calculated value of a section to determine the sum of an adjacent section in the array. 
+
+Ex 1 2 3 4 5 6 7 8 
+
+If we calculate the first section of four values we get 1+2+3+4= 10, then to calculate the next section
+2+3+4+5 we can just take our first section (window_sum) and perform the operation: 
+
+window_sum-first entry + last entry = 10-1+5= 14
+
+So essentially for the window sliding technique we use what we know about an existing window to 
+determine properties for another window. 
+
+
+
+
+
+Algorithm
+
+In the brute force approach, we repeatedly check a substring to see if it has duplicate characters but
+this is unnecessary. If a substring from index i to j-1 is already checked to have no duplicate 
+characters we only need to check if s[j] is already in the substring. 
+
+To check if a character is already in the substring we can scan the substring which leads to an O(n^2)
+algorithm but we can improve on this runtime using a HashSet as a sliding window to check if a 
+character exists in the current set O(1). 
+
+We use a HashSet to store the characters in the current window [i,j) and then we slide the index j to
+the right, if it is not in the HashSet, we slide j further until s[j] is already in the HashSet. At
+this point we found the maximum size of substrings without duplicate characters starting with index i.
+If we do this for all i, then we obtain our answer. 
+
+
+
+
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            // try to extend the range [i, j]
+            if (!set.contains(s.charAt(j))){
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            }
+            else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return ans;
+    }
+}
+
+
+
+Complexity Analysis
+
+Time complexity:	O(2n)=O(n)	Worst case each character will be visited twice by i and j
+
+Space complexity: 	O(min(m,n))	Same as the brute force method, we need O(k) space for the 
+					sliding window where k is the size of the set. The size of the
+					set is bounded by the size of the string n and the size of the
+					charset/alphabet m 
+
+
+
+
+
+//===================================================================================================//
+
+Approach 3: Sliding Window Optimized
+
+The previously discussed sliding window approach requires at most 2n steps and this could in fact be
+optimized even further to require only n steps. Instead of using a set to tell if a character exists or
+not, we could define a mapping of the characters to its index. Then we can skip the characters 
+immediately when we found a repeated character 
+
+If s[j] has a duplicate in the range [i,j) with index j', we don't need to increase i little be little
+we can just skip all the elements in the range [i,j'] and let i be j'+1 directly 
+
+
+***
+
+
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j)), i);
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j + 1);
+        }
+        return ans;
+    }
+}
+
+
+
+//===================================================================================================//
+
+
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+//===================================================================================================//
+Brute force solution 
+
+public int[] twoSum(int[] nums, int target) {
+	for (int i=0; i<nums.size; i++){
+		for (int j=i+1;j<nums.length;j++){
+			if (nums[j]==target-nums[i]){
+				return new int[] {i,j};
+			}
+		}
+	}
+	throw new IllegalArgumentException("No two sum solution");
+} 
+
+
+Complexity Analysis 
+
+Time complexity:   O(n^2)         we have a nested loop 
+Space complexity:  O(1) 	  we do not allocate any additional memory
+
+//===================================================================================================//
+One-pass Hash table 
+
+public int[] twoSum(int[] nums, int target) {
+	Map<Integer, Integer> map = new HashMap<>();
+	for(int i=0; i<nums.length; i++){
+		int complement=target-nums[i];
+		if (map.containsKey(complement)){
+			return new int[] {map.get(complement),i};
+		}
+		map.put(nums[i],i);
+	}
+	throw new IllegalArgumentException("No two sum solution"); 
+}
+
+
+Complexity Analysis
+
+Time complexity:   0(n)		each lookup in the hash table only requires O(1) time
+Space complexity:  O(n)		we require additional space for the hash table which stores at most n
+
+//===================================================================================================//
+
+

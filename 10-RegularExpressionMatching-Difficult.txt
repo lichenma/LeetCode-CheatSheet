@@ -1,0 +1,250 @@
+//===================================================================================================//
+//Regular Expression Matching 
+
+Given an input string (s) and a pattern (p), implement regular expression matching with support for '.'
+and '*'
+
+	'.' Matches any single character
+	'*' Matches zero or more of the preceding element 
+
+The matching should cover the entire input string (not partial) 
+
+Note: 
+
+	- s could be empty and contains only lower case letters a-z
+	- p could be empty and contains only lower case letters a-z and characters like . or * 
+
+
+Example 1: 
+
+Input:
+	s="aa" 
+	p="a" 
+	Output: false 
+	Explanation: 	"a" does not match the entire string "aa" 
+
+
+
+Example 2: 
+
+Input: 
+	s="aa"
+	p="a*" 
+	Output: true 
+	Explanation: 	'*' means zero of more of the preceding element, 'a'. Therefore, by repeating
+			'a' once it becomes "aa"
+	
+
+Example 3: 
+
+Input: 
+	s="ab" 
+	p=".*" 
+	Output: true 
+	Explanation: 	'.*' means "zero or more (*) of any character (.)"
+
+
+Example 4: 
+
+Input: 
+	s="aab" 
+	p="c*a*b" 
+	Output: true
+	Explanation: 	c can be repeated 0 times, a can be repeated 1 time. Therefore it matches 
+			"aab" 
+
+
+Example 5: 
+
+Input: 
+	s="mississippi" 
+	p="mis*is*p*."
+	Output: false 
+
+
+//===================================================================================================//
+
+Approach 1: Recursion 
+
+If there were no Kleene stars (the * wildcard characters for regular expressions), the problem would 
+be easier- we simply check from left to right if each character of the text matches the pattern. When
+a star is present we may need to check for may different suffixes of the text and see if they match
+the rest of the pattern. A recursive solution is a straightforward way to represent this relationship
+
+
+class Solution {
+	public boolean isMatch(String text, String pattern) {
+		if (pattern.isEmpty()) return text.isEmpty(); 
+		
+		boolean first_match=(!text.isEmpty() && 
+				    (pattern.charAt(0)==text.charAt(0) || pattern.charAt(0)=='.'));
+
+		if (pattern.length()>=2 && pattern.charAt(1) =='*'){
+			return (isMatch(text,pattern.substring(2))||
+			       (first_match && isMatch(text.substring(1),pattern)));
+		
+		//note: pattern.substring(2) returns all of the characters after index 2 of pattern
+		}
+		else {
+			return first_match && isMatch(text.substring(1), pattern.substring(1));
+		}
+		
+	}
+}
+
+
+Complexity Analysis
+
+Time Complexity: 	Let T, P be the lengths of the text and the pattern respectively. In the worst
+			case, a call to match(text[i:],pattern[2j:]) will be made (i+j i) times, and 
+			strings of the order O(T-i) and O(P-2*j) will be made. Thus the complexity has
+			the order: 
+
+			summation from i=0 to T * summation from j=0 to P/2 * (i+j i) O(T+P-i-2j).
+
+			We can show that this is bounded by O((T+P)2^(T+P/2))
+
+Space Complexity:	For every call to match, we will create those strings as described above 
+			possibly creating duplicates. If memory is not freed, this will also take a
+			total of O((T+P)2^(T+P/2)) space even though there are only order O(T^2+P^2) 
+			unique suffixes of P and T that are actually required 
+
+
+
+//===================================================================================================//
+
+Approach 2: Dynamic Programming
+
+As the problem has an optimal substructure, it is natural to cache intermediate results. We ask the 
+question dp(i,j): does text[i:] and pattern[j:] match? We can describe our answer in terms of answers
+to questions involving smaller strings
+
+Algorithm 
+
+We proceed with the same recursion as in Approach 1, except because calls will only ever be made to 
+match(text[i:], pattern[j:]), we use dp(i,j) to handle those calls instead, saving us expensive 
+string-building operations and allowing us to cache the intermediate results 
+
+
+Java Top-Down Variation
+
+
+
+enum Result {
+	TRUE, FALSE
+	
+}
+
+class Solution {
+	Result[][] memo; 
+
+	public boolean isMatch(String text, String pattern) { 
+		memo=new Result[text.length() +1][pattern.length() +1];
+		return dp(0,0,text,pattern);
+	}
+
+	public boolean dp(int i, int j, String text, String pattern) {
+		if (memo[i][j]!=null) {
+			return memo[i][j]==Result.TRUE;
+		}
+		boolean ans; 
+		if (j==pattern.length()){
+			ans=i==text.length();
+		}
+		else {
+			boolean first_match=(i<text.length() && (pattern.charAt(j) == text.charAt(i) ||
+					     patter.charAt(j) == '.'));
+
+			if (j+1<pattern.length() && pattern.charAt(j+1)=='*'){
+				ans=(dp(i,j+1,text,pattern)||first_match&& dp(i+1,j,text,pattern));
+			}
+			else {
+				ans=first_match && dp(i+1, j+1, text, pattern); 
+			}
+		}
+		memo[i][j]=ans? Result.TRUE: Result.FALSE; 
+		return ans; 
+	}
+}
+
+
+Complexity Analysis
+
+Time Complexity: 	Let T, P be the lengths of the text and the pattern respectively. The work 
+			for every call to dp(i,j) for i=0,...,T; j=0,...,P is done once and it is O(1) 				work. Hence the time complexity is O(TP)
+
+Space Complexity:	The only memory we use is the O(TP) boolean entries in our cache. Hence, the 
+			space complexity is O(TP) 
+
+
+
+
+//===================================================================================================//
+
+Approach 3: Non- recursive 
+
+The recursive programming solutions are pretty confusing so this implementation uses 2D arrays and 
+Dynamic Programming 
+
+
+The logic works as follows: 
+
+1) If p.charAt(j) == s.charAt(i) : dp[i][j] = dp[i-1][j-1]; 
+2) If p.charAt(j) == '.' : dp[i][j] = dp[i-1][j-1]; 
+3) If p.charAt(j) == '*': 
+	
+	Subconditions
+	1) If p.charAt(j-1)!= s.charAt(i):dp[i][j]=dp[i][j-2]  	//in this case a* only counts as empty
+	2) If p.charAt(i-1)== s.charAt(i) or p.charAt(i-1) == '.': 
+		
+		dp[i][j] = dp[i-1][j]	//in this case a* counts as multiple a 
+	     or dp[i][j] = dp[i][j-1]	//in this case a* counts as single a 
+	     or dp[i][j] = dp[i][j-2]	//in this case a* counts as empty 
+
+
+
+
+public boolean isMatch(String s, String p) {
+	if (s==null || p==null){
+		return false;
+	}
+	boolean[][] dp=new boolean[s.length()+1][p.length()+1];
+	dp[0][0]=true; 
+	for (int i=0;i<p.length(); i++){
+		if (p.charAt(i)=='*' && dp[0][i-1]){
+			dp[0][i+1]=true; 
+		}
+	}
+	for (int i=0;i<s.length();i++){
+		for (int j=0;j<p.length();j++){
+			if (p.charAt(j)=='.'){
+				dp[i+1][j+1]=dp[i][j];
+			}
+			if (p.charAt(j)==s.charAt(i)){
+				dp[i+1][j+1]=dp[i][j];
+			}
+			if (p.charAt(j)=='*'){
+				if (p.charAt(j-1)!=s.charAt(i) && p.charAt(j-1) !='.'){
+					dp[i+1][j+1]=dp[i+1][j-1];
+				}
+				else{
+					dp[i+1][j+1]=(dp[i+1][j] || dp[i][j+1] || dp[i+1][j-1]);
+				}
+			}
+		}
+	}
+	return dp[s.length()][p.length()];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//===================================================================================================//

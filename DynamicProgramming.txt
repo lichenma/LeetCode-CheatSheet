@@ -1,0 +1,134 @@
+//===================================================================================================//
+
+Dynamic Programming
+
+Dynamic Programming is mainly an optimization over plain recursion. Whenever we see a recursive 
+solution that has repeated calls for the same inputs we can optimize it using Dynamic Programming. The 
+idea is to simply store the results of subproblems, so that we do not have to re-compute them when 
+needed later. This simple optimization reduces time complexities from exponential to polynomial. For
+example, if we write simple recursive solution for Fibonacci Numbers, we get exponential time 
+complexity and if we optimize it by storing solutions of subproblems time complexity reduces to 
+linear.
+
+We break a complex problem up into a collection of simpler subproblems and solve each of those 
+subproblems just once and storing their solutions using a memory-based data structure
+
+Example: Fibonacci Numbers 
+
+
+//===================================================================================================//
+
+Approach 1: Recursion
+
+class fibonacci {
+	static int fib(int n){
+		if (n<=1){
+			return n;
+		}
+		return fib(n-1)+fib(n-2);
+	}
+
+	public static void main(String args[]){
+		int n=9;
+		System.out.println(fib(n));
+	}
+}
+
+
+Output: 34 
+
+Time Complexity: T(n) = T(n-1) + T(n-2) which is exponential 
+
+We can observe that this implementation does a lot of repeated work. So this is a bad implementation
+for nth Fibonacci number 
+
+							fib(5)   
+                     /                \
+               fib(4)                fib(3)   
+             /        \              /       \ 
+         fib(3)      fib(2)         fib(2)   fib(1)
+        /    \       /    \        /      \
+  fib(2)   fib(1)  fib(1) fib(0) fib(1) fib(0)
+  /     \
+fib(1) fib(0)
+
+
+Space Complexity: O(n) if we consider the function call stack size, otherwise O(1) 
+
+
+
+//===================================================================================================//
+
+Approach 2: Dynamic Programming 
+
+class fibonacci {
+	static int fib(int n){
+		//Declare an array to store Fibonacci numbers 
+		int f[]=new int[n+2]; 	//1 extra to handle case, n=0
+		int i; 
+
+		//0th and 1st number of the series are 0 and 1
+		f[0]=0;
+		f[1]=1;
+
+		for(i=2;i<=n;i++){
+			//add the previous two numbers in the series and store it 
+			f[i]=f[i-1]+f[i-2];
+		}
+
+		return f[n];
+	}
+
+	public static void main(String args[]){
+		int n=9; 
+		System.out.println(fib(n));
+	}
+}
+
+
+Time Complexity: O(n) 
+Space Complexity: O(n) 
+
+
+
+//===================================================================================================//
+
+Approach 3: Space Optimized Dynamic Programming 
+
+We can optimize the space used in the above method by storing only the previous two numbers because
+that is all we need to get the next Fibonacci Number in series 
+
+
+class fibonacci{
+	static int fib(int n){
+		int a=0, b=1, c;
+		if (n==0) {
+			return a;
+		}
+		for (int i=2;i<=n;i++){
+			c=a+b;
+			a=b;
+			b=c;
+		}
+		return b; 
+	}
+	
+	public static void main(String args[]){
+		int n=0;
+		System.out.println(fib(n));
+	}
+}
+
+Time Complexity: O(n) 
+Space Complexity: O(1) 
+
+//===================================================================================================//
+
+There is also a O(logn) runtime method of implementing fibonacci using matrices and also a O(1) runtime
+method which uses the Fibonacci mathematical equation 
+
+Fn=((sqrt(5)+1)/2)^n)/sqrt(5) 
+
+
+
+//===================================================================================================//

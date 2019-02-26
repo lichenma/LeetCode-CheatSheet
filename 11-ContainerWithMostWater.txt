@@ -1,0 +1,94 @@
+//===================================================================================================//
+
+Container with Most Water 
+
+Given n non negative integers a1,a2, ... , an where each represents a point at coordinate (i, ai). n 
+vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two 
+lines, which together with x-axis forns a container such that the container contains the most water. 
+
+
+Example: The array [1,8,6,2,5,4,8,3,7] would have a max area of water which is 49. 
+
+		      ^		    ^
+	 These two values form the container which could hold water at a max height of 7, these values
+	 are also 7 array indexes apart from each other so it could hold water at a max width of 7. The
+	 area of water which could be held is thus 7 x 7 = 49
+
+
+
+//===================================================================================================//
+
+Approach 1: Brute Force 
+
+In this case we simply consider the area for every possible pair of the lines and find out the maximum
+area out of those. 
+
+
+
+
+
+public class Solution {
+	public int maxArea(int[] height) {
+		int maxarea=0; 
+		for (int i=0; i<height.length; i++){
+			for (int j=i+1;j<height.length;j++){
+				maxarea=Math.max(maxarea, Math.min(height[i],height[j])*(j-i));
+			}
+		}
+		return maxarea;
+	}
+}
+
+
+Time complexity: 	O(n^2) 	Calculating the area for all n(n-1)/2 height pairs 
+Space complexity: 	O(1) 	Constant extra space is used 
+
+
+
+//===================================================================================================//
+
+Approach 2: Two Pointer Approach 
+
+The intuition behind this approach is that the area formed between the lines will always be limited by 
+the height of the shorter line. Further, the farther the lines, the more will be the area obtained. 
+
+We take two pointers, one at the beginning and one at the end of the array constituting the length of 
+the lines. Further, we maintain a variable maxarea to store the maximum area obtained till now. At 
+every step, we find out the area formed between them, update maxarea and move the pointer pointing to 
+the shorter line towards the other end by one step. 
+
+Initially we consider the area constituting the exterior most lines. Now to maximize the area we need
+to consider the area between the lines of larger lengths. If we try to move the pointer at the longer
+line inwards, we won't gain any increase in area, since it is limited by the shorter line. But moving
+the shorter line's pointer could turn out to be benefical, as per the same argument, despite the 
+reduction in width. This is done since a relatively longer line obtained by moving the shorter line's 
+pointer might overcome the reduction in area caused by the width reduction. 
+
+
+
+
+
+public class Solution {
+	public int maxArea(int[] height) {
+		int maxarea=0, l=0, r=height.length-1; 
+		while (l<r){
+			maxarea=Math.max(maxarea,Math.min(height[l],height[r])*(r-l));
+			if (height[l]<height[r]){
+				l++;
+			}
+			else{
+				r--;
+			}
+		}
+		return maxarea; 
+	}
+}
+
+
+
+Time complexity: 	O(n) 	Single pass
+Space complexity: 	O(1) 	Constant space is used 
+
+
+
+//===================================================================================================//
