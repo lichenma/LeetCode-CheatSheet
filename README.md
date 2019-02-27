@@ -53,6 +53,7 @@ Chrome Version 71.0.3578.98
     
     
 <br><br><br>
+***
 <a name="twoSum"></a>
 ## 1-Two Sum 
 
@@ -107,7 +108,9 @@ public int[] twoSum(int[] nums, int target) {
 * Time complexity:   O(n)		each lookup in the hash table only requires O(1) time
 * Space complexity:  O(n)		we require additional space for the hash table which stores at most n
 
+
 <br><br><br>
+***
 <a name="addTwoNumbers"></a>
 ## 2-Add Two Numbers 
 
@@ -164,6 +167,7 @@ class Solution {
 * Space Complexity: O(max(m,n))		the maximum length of the new list is max(m,n)+1
 
 <br><br><br>
+***
 ## 3-Substring No Repeat 
 
 Longest Substring Without Repeating Characters 
@@ -235,6 +239,7 @@ public class Solution {
 
 **Complexity Analysis** 
 
+```
 * Time Complexity:   O(n^3)		Verifying if characters in   [i,j) are unique requires us to scan all of
 					them which would cost O(j-i) time. 
 
@@ -254,7 +259,8 @@ public class Solution {
 					upper bounded by the size of the string n amd the size of the charset
 					or alphabet m 
 				
-
+				
+```
 
 
 
