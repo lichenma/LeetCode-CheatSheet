@@ -192,7 +192,7 @@ Explanation: 	The answer is "wke", with the length of 3. Note that the answer mu
 <a name="substringNoRepeatBruteForce"></a>
 ### Brute Force 
 
-Algorithm 
+*Algorithm* 
 
 
 Suppose we have a function "boolean allUnique(String substring)" which returns true if all the
@@ -234,7 +234,7 @@ public class Solution {
 
 **Complexity Analysis** 
 
-* Time Complexity:   O(n^3)		Verifying if characters in [i,j) are unique requires us to scan all of
+* Time Complexity:   O(n^3)		Verifying if characters in   [i,j) are unique requires us to scan all of
 					them which would cost O(j-i) time. 
 
 					For a given i, the sum of time costed by each j -> [i+1,n] is 
