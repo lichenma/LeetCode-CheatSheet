@@ -281,7 +281,7 @@ the value obtained from another section of the array to determine something abou
 array. For example if we are calculating the sum of sections of an array we can use the previously 
 calculated value of a section to determine the sum of an adjacent section in the array. 
 ```
-Ex 1 2 3 4 5 6 7 8 
+Ex. 1 2 3 4 5 6 7 8 
 ```
 If we calculate the first section of four values we get 1+2+3+4= 10, then to calculate the next section
 2+3+4+5 we can just take our first section (window_sum) and perform the operation: 
@@ -291,6 +291,7 @@ window_sum-first entry + last entry = 10-1+5= 14
 So essentially for the window sliding technique we use what we know about an existing window to 
 determine properties for another window. 
 
+<br><br>
 *Algorithm*
 
 In the brute force approach, we repeatedly check a substring to see if it has duplicate characters but
