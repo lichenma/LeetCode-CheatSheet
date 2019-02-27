@@ -120,6 +120,44 @@ Output 7 -> 0 -> 8
 <a name="addTwoNumbersElementaryMath"></a>
 ### Elementary Math Solution
 
+```java 
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+
+
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode dummyHead= new ListNode(0); 
+        ListNode p=l1, q=l2, curr=dummyHead; 
+        int carry=0; 
+        while (p!=null||q!=null){
+            int x= (p!=null) ? p.val :0; //if (p!=null) then x contains p.val
+            int y= (q!=null) ? q.val :0;
+            int sum=carry+x+y;
+            carry=sum/10;
+            curr.next=new ListNode(sum%10);
+            curr=curr.next; 
+            if (p!=null) p=p.next; 
+            if (q!=null) q=q.next; 
+        }
+        if (carry>0){
+            curr.next= new ListNode(carry);
+        }
+        return dummyHead.next; 
+    }
+}
+```
+
+**Complexity analysis** 
+* Time Complexity:  O(max(m,n))           depends on the lengths of the two linked lists 
+* Space Complexity: O(max(m,n))		the maximum length of the new list is max(m,n)+1
 
 
 
