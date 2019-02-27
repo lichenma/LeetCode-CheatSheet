@@ -44,6 +44,8 @@ Chrome Version 71.0.3578.98
 1. [1-Two Sum](#twoSum)
     1. [Brute force](#twoSumBruteForce)
     2. [One pass Hash Table](#twoSumOnePassHashTable) 
+2. [2-Add Two Numbers](#addTwoNumbers)
+    1. [Elementary Math Solution](#addTwoNumbersElementaryMath)
     
 <a name="twoSum"></a>
 ## 1-Two Sum 
@@ -96,8 +98,11 @@ public int[] twoSum(int[] nums, int target) {
 ```
 **Complexity Analysis**
 
-* Time complexity:   0(n)		each lookup in the hash table only requires O(1) time
+* Time complexity:   O(n)		each lookup in the hash table only requires O(1) time
 * Space complexity:  O(n)		we require additional space for the hash table which stores at most n
+
+<a name="addTwoNumbers"></a>
+## Add Two Numbers 
 
 
 
