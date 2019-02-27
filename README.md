@@ -102,9 +102,20 @@ public int[] twoSum(int[] nums, int target) {
 * Space complexity:  O(n)		we require additional space for the hash table which stores at most n
 
 <a name="addTwoNumbers"></a>
-## Add Two Numbers 
+## 2-Add Two Numbers 
 
+Given two non-empty linked lists representing two non-negative integers with the digits stored in 
+reverse order and each node containing a single digit, add the two numbers and return as a linked list
 
+Example: 
+```
+Input (2 -> 4 -> 3) + (5 -> 6 -> 4) 
+Output 7 -> 0 -> 8 
+
+342 + 465 = 807
+```
+<a name="addTwoNumbersElementaryMath"></a>
+### Elementary Math Solution
 
 
 
