@@ -75,8 +75,8 @@ public int[] twoSum(int[] nums, int target) {
 ```
 **Complexity Analysis** 
 
-Time complexity:   O(n^2)         we have a nested loop 
-Space complexity:  O(1) 	  we do not allocate any additional memory
+* Time complexity:   O(n^2)         we have a nested loop 
+* Space complexity:  O(1) 	  we do not allocate any additional memory
 
 <a name="twoSumOnePassHashTable"></a>
 ### One Pass Hash Table 
@@ -96,8 +96,8 @@ public int[] twoSum(int[] nums, int target) {
 ```
 **Complexity Analysis**
 
-Time complexity:   0(n)		each lookup in the hash table only requires O(1) time
-Space complexity:  O(n)		we require additional space for the hash table which stores at most n
+* Time complexity:   0(n)		each lookup in the hash table only requires O(1) time
+* Space complexity:  O(n)		we require additional space for the hash table which stores at most n
 
 
 
