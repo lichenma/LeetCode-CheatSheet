@@ -83,10 +83,10 @@ public int[] twoSum(int[] nums, int target) {
 } 
 ```
 **Complexity Analysis** 
-
+```
 * Time complexity:   O(n^2)         we have a nested loop 
 * Space complexity:  O(1) 	  we do not allocate any additional memory
-
+```
 <a name="twoSumOnePassHashTable"></a>
 ### One Pass Hash Table 
 
@@ -163,9 +163,10 @@ class Solution {
 ```
 
 **Complexity analysis** 
-* Time Complexity:  O(max(m,n))           depends on the lengths of the two linked lists 
+```
+* Time Complexity:  O(max(m,n))         depends on the lengths of the two linked lists 
 * Space Complexity: O(max(m,n))		the maximum length of the new list is max(m,n)+1
-
+```
 <br><br><br>
 ***
 ## 3-Substring No Repeat 
@@ -262,7 +263,33 @@ public class Solution {
 				
 ```
 
+### Sliding Window 
 
+A sliding window is an abstract concept commonly used in array/string problems. A window is a range of 
+elements in the array/string which usually defined by the start and end indices
+```
+Ex. [i,j) left-closed, right-open
+```
+A sliding window is a window that slides its two boundaries in a certain direction, for example if we
+slide \[i,j) to the right by 1 element, then it becomes \[i+1, j+1) - left closed, right open.
+
+
+
+Sliding Window approach, whenever we are looking at a section on an array usual to perform calculations
+we don't need to completely recalculate everything for every section of the array. Usually we can use
+the value obtained from another section of the array to determine something about this section of the 
+array. For example if we are calculating the sum of sections of an array we can use the previously 
+calculated value of a section to determine the sum of an adjacent section in the array. 
+```
+Ex 1 2 3 4 5 6 7 8 
+```
+If we calculate the first section of four values we get 1+2+3+4= 10, then to calculate the next section
+2+3+4+5 we can just take our first section (window_sum) and perform the operation: 
+```
+window_sum-first entry + last entry = 10-1+5= 14
+```
+So essentially for the window sliding technique we use what we know about an existing window to 
+determine properties for another window. 
 
 
 
