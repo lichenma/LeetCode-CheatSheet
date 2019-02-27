@@ -50,7 +50,8 @@ Chrome Version 71.0.3578.98
     1. [Brute force](#substringNoRepeatBruteForce)
     2. [Sliding Window](#substringNoRepeatSlidingWindow)
     3. [Optimized Sliding Window](#substringNoRepeatOptimized)
-    
+4. [Median of Two Sorted Arrays](#medianofTwoSortedArrays)
+    1. [Recursive Approach](#medianofTwoSortedArraysRecursiveApproach)
     
 <br><br><br>
 ***
@@ -169,6 +170,7 @@ class Solution {
 ```
 <br><br><br>
 ***
+<a name="substringNoRepeat"></a>
 ## 3-Substring No Repeat 
 
 Longest Substring Without Repeating Characters 
@@ -349,8 +351,8 @@ optimized even further to require only n steps. Instead of using a set to tell i
 not, we could define a mapping of the characters to its index. Then we can skip the characters 
 immediately when we found a repeated character 
 
-If s[j] has a duplicate in the range \[i,j) with index j', we don't need to increase i little be little
-we can just skip all the elements in the range \[i,j'] and let i be j'+1 directly 
+If s[j] has a duplicate in the range \[i , j) with index j', we don't need to increase i little be little
+we can just skip all the elements in the range \[i , j'] and let i be j'+1 directly 
 
 ```java 
 public class Solution {
@@ -370,7 +372,10 @@ public class Solution {
 }
 ```
 
-
+<br><br><br>
+***
+<a name="medianofTwoSortedArrays"></a>
+## 3-Substring No Repeat 
 
 
 
