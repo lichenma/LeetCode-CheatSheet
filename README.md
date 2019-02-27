@@ -189,7 +189,7 @@ Explanation: 	The answer is "wke", with the length of 3. Note that the answer mu
 		"pwke" is a subsequence and not a substring 
 ```
 
-<<a name="substringNoRepeatBruteForce"></a>
+<a name="substringNoRepeatBruteForce"></a>
 ### Brute Force 
 
 Algorithm 
@@ -210,6 +210,49 @@ if the set already contains it. If so we return false and after the loop we retu
 
 
 ```java 
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int ans = 0;
+        for (int i = 0; i < n; i++)
+            for (int j = i + 1; j <= n; j++)
+                if (allUnique(s, i, j)) ans = Math.max(ans, j - i);
+        return ans;
+    }
+
+    public boolean allUnique(String s, int start, int end) {
+        Set<Character> set = new HashSet<>();
+        for (int i = start; i < end; i++) {
+            Character ch = s.charAt(i);
+            if (set.contains(ch)) return false;
+            set.add(ch);
+        }
+        return true;
+    }
+}
+```
+
+**Complexity Analysis** 
+
+* Time Complexity:   O(n^3)		Verifying if characters in [i,j) are unique requires us to scan all of
+					them which would cost O(j-i) time. 
+
+					For a given i, the sum of time costed by each j -> [i+1,n] is 
+					"Summation from i+1 to n O(j-1)"
+
+					Thus, the sum of all the time consumption is: 
+					O(summation from 0 to n-1(summation from j=i+1 to n (j-1))) 
+					O(summation from i=0 to n-1(1+n-i)(n-i)/2)) = O(n^3)
+
+
+					*Note that the sum of all numbers up to n 1+2+3+...+n = n(n+1)/2
+
+
+* Space Complexity:  O(min(n,m))	We require O(k) space for checking a substring has no duplicate 
+					characters, where k is the size of the set. The size of the Set is 
+					upper bounded by the size of the string n amd the size of the charset
+					or alphabet m 
+				
 
 
 
