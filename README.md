@@ -1,4 +1,4 @@
-# LeetCode- CheatSheet
+# LeetCode - CheatSheet
 
 A compilation of notes that I made when working with Leetcode problems - Note a majority of the content and code was taken off of 
 the solution and discuss sections of the Leetcode website so I do not take any owenership of the below. The following is simply 
@@ -46,6 +46,10 @@ Chrome Version 71.0.3578.98
     2. [One pass Hash Table](#twoSumOnePassHashTable) 
 2. [Add Two Numbers](#addTwoNumbers)
     1. [Elementary Math Solution](#addTwoNumbersElementaryMath)
+3. [Substring No Repeat](#substringNoRepeat)
+    1. [Brute force](#substringNoRepeatBruteForce)
+    2. [Sliding Window](#substringNoRepeatSlidingWindow)
+    3. [Optimized Sliding Window](#substringNoRepeatOptimized)
     
     
 <br><br><br>
@@ -158,6 +162,74 @@ class Solution {
 **Complexity analysis** 
 * Time Complexity:  O(max(m,n))           depends on the lengths of the two linked lists 
 * Space Complexity: O(max(m,n))		the maximum length of the new list is max(m,n)+1
+
+## 3-Substring No Repeat 
+
+Longest Substring Without Repeating Characters 
+
+Given a string find the length of the longest substring without repeating characters. 
+
+```
+Example
+Input: 		"abcabcbb"
+Output:		3
+Explanation:	The answer is "abc", with the length of 3
+```
+```
+Example 2
+Input:		"bbbbb"
+Output:		1
+Explanation:	The answer is "b", with the length of 1
+```
+```
+Example 3
+Input:		"pwwkew"
+Output:		3
+Explanation: 	The answer is "wke", with the length of 3. Note that the answer must be a substring
+		"pwke" is a subsequence and not a substring 
+```
+
+<<a name="substringNoRepeatBruteForce"></a>
+### Brute Force 
+
+Algorithm 
+
+
+Suppose we have a function "boolean allUnique(String substring)" which returns true if all the
+characters in the substring are unique and false otherwise. We can iterate through all the possible 
+substrings of the given string s and call the function allUnique. If it turns out to be true, then we 
+update our answer of the maximum length of substring without duplicate characters. 
+
+To enumerate all substrings of a given string we enumerate the start and end indices of them. Suppose
+the start and end indices are i and j respectively. Then we have 0 <= i <= j <= n. Thus using two 
+nested loops with i from 0 to n-1 and j from i+1 to n, we can enumerate all the substrings of s
+
+To check if one string has duplicate characters we can use a set. We iterate through all the 
+characters in the string and put them into the set one by one. Before putting one character, we check
+if the set already contains it. If so we return false and after the loop we return true.
+
+
+```java 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
