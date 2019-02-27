@@ -84,7 +84,7 @@ public int[] twoSum(int[] nums, int target) {
 ```
 **Complexity Analysis** 
 ```
-* Time complexity:   O(n^2)         we have a nested loop 
+* Time complexity:   O(n^2)       we have a nested loop 
 * Space complexity:  O(1) 	  we do not allocate any additional memory
 ```
 <a name="twoSumOnePassHashTable"></a>
@@ -104,10 +104,10 @@ public int[] twoSum(int[] nums, int target) {
 }
 ```
 **Complexity Analysis**
-
+```
 * Time complexity:   O(n)		each lookup in the hash table only requires O(1) time
 * Space complexity:  O(n)		we require additional space for the hash table which stores at most n
-
+```
 
 <br><br><br>
 ***
@@ -291,7 +291,20 @@ window_sum-first entry + last entry = 10-1+5= 14
 So essentially for the window sliding technique we use what we know about an existing window to 
 determine properties for another window. 
 
+*Algorithm*
 
+In the brute force approach, we repeatedly check a substring to see if it has duplicate characters but
+this is unnecessary. If a substring from index i to j-1 is already checked to have no duplicate 
+characters we only need to check if s[j] is already in the substring. 
+
+To check if a character is already in the substring we can scan the substring which leads to an O(n^2)
+algorithm but we can improve on this runtime using a HashSet as a sliding window to check if a 
+character exists in the current set O(1). 
+
+We use a HashSet to store the characters in the current window \[i,j) and then we slide the index j to
+the right, if it is not in the HashSet, we slide j further until s[j] is already in the HashSet. At
+this point we found the maximum size of substrings without duplicate characters starting with index i.
+If we do this for all i, then we obtain our answer. 
 
 
 
