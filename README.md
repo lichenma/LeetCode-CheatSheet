@@ -16,7 +16,7 @@ and makes formatting much easier.
 
 In the future I might add a html document which also performs some formatting and if that comes out, ideally the html and css
 would be written for web browsers on large screens which support the newest version of bootstrap and html 5.
-I used the following application when building and testing html.
+I use the following application when building and testing html.
 
 ```
 Chrome Version 71.0.3578.98
