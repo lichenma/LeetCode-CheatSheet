@@ -262,7 +262,7 @@ public class Solution {
 				
 				
 ```
-
+<a name="substringNoRepeatSlidingWindow"></a>
 ### Sliding Window 
 
 A sliding window is an abstract concept commonly used in array/string problems. A window is a range of 
@@ -283,7 +283,7 @@ calculated value of a section to determine the sum of an adjacent section in the
 ```
 Ex. 1 2 3 4 5 6 7 8 
 ```
-If we calculate the first section of four values we get 1+2+3+4= 10, then to calculate the next section
+If we calculate the first section of four values we get 1+2+3+4 = 10 , then to calculate the next section
 2+3+4+5 we can just take our first section (window_sum) and perform the operation: 
 ```
 window_sum-first entry + last entry = 10-1+5= 14
@@ -306,6 +306,71 @@ We use a HashSet to store the characters in the current window \[i,j) and then w
 the right, if it is not in the HashSet, we slide j further until s[j] is already in the HashSet. At
 this point we found the maximum size of substrings without duplicate characters starting with index i.
 If we do this for all i, then we obtain our answer. 
+
+
+```java 
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            // try to extend the range [i, j]
+            if (!set.contains(s.charAt(j))){
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            }
+            else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return ans;
+    }
+}
+```
+
+**Complexity Analysis**
+```
+Time complexity:	O(2n)=O(n)	Worst case each character will be visited twice by i and j
+
+Space complexity: 	O(min(m,n))	Same as the brute force method, we need O(k) space for the 
+					sliding window where k is the size of the set. The size of the
+					set is bounded by the size of the string n and the size of the
+					charset/alphabet m
+```
+
+
+<a name="substringNoRepeatOptimized"></a>
+
+### Sliding Window Optimized 
+
+The previously discussed sliding window approach requires at most 2n steps and this could in fact be
+optimized even further to require only n steps. Instead of using a set to tell if a character exists or
+not, we could define a mapping of the characters to its index. Then we can skip the characters 
+immediately when we found a repeated character 
+
+If s[j] has a duplicate in the range \[i,j) with index j', we don't need to increase i little be little
+we can just skip all the elements in the range \[i,j'] and let i be j'+1 directly 
+
+```java 
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j)), i);
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j + 1);
+        }
+        return ans;
+    }
+}
+```
+
+
 
 
 
