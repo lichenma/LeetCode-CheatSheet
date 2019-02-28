@@ -447,16 +447,104 @@ median= (max(left_part)+min(right_part))/2
 ```
 To ensure these two conditions, we need to ensure: 
 1. i+j= m-i+n-j (or: m-i+n-j+1) if n>m, we just need to set i=0~m, j= (m+n+1)/2 - i
-2. B[j-1]<=A[i] and A[i-1]<=B[j]
+2. B\[j-1]<=A\[i] and A\[i-1]<=B\[j]
 
+So, all we need to do is search for i in \[0,m] to find an object i such that 
+B\[j-1]<=A\[i] and A\[i-1]<=B\[j] where j=(m+n+1)/2 -i
 
+Then we perform a binary search following the steps described below: 
 
+1) Set imin=0, imax=0, then start searching in \[imin, imax]
+2) Set i=(imin+imax)/2 , j=(m+n+1)/2 - i
+3) Now we have len(left_part) = len(right_part) and there are only 3 more situations which we may 
+   encounter: 
+   
+```
+   - B[j-1] <= A[i] and A[i-1]<=B[j] 
+     This means that we have found the object i, so we can stop searching
 
+   - B[j-1] > A[i]
+     Means A[i] is too small, we must adjust i to get B[j-1]<=A[i] so we increase i because this will
+     cuase j to be decreased. We cannot decrease i because when i is decreased, j will be increased
+     so B[j-1] is increased and A[i] is decreased (B[j-1]<= A[i] will never be satisfied)
 
+   - A[i-1] > B[j] 
+     Means A[i-1] is too big and thus we must decrease i to get A[i-1]<=B[j]. In order to do that we 
+     must adjust the searching range to [imin, i-1] so we set imax=i-1 and go back to step 2
+```
+When the object i is found, then the media is: 
 
+ max(A\[i-1],B\[j-1]), when m+n is odd
+(max(A\[i-1],B\[j-1])+min(A\[i],B\[j]))/2, when m+n is even
 
+Next is to consider the edge values i=0, i=m, j=0, j=n where A\[i-1], B\[j-1], A\[i], B\[j] may not exist
 
+```java 
+class Solution {
+	public double findMedianSortedArrays(int[] A, int[] B) {
+		int m=A.length;
+		int n=B.length;
+		if (m>n) {   	//ensuring that m<=n
+			int[] temp=A; A=B; B=temp;
+			int tmp=m; m=n; n=tmp;
+		}
+		int iMin=0, iMax=m, halfLen=(m+n+1)/2;
+		while (iMin<=iMax) {
+			int i=(iMin+iMax)/2
+			int j= halfLen - i;
+			if (i<iMax && B[j-1] > A[i]){
+				iMin=i+1; //i is too small
+			}
+			else if (i>iMin && A[i-1]>B[j]) {
+				iMax=i-1; //i is too big
+			}
+			else{ //we have found the object i 
+				int maxLeft=0; 
+				if (i==0) {
+					maxLeft=B[j-1];
+				}
+				else if (j==0){
+					maxLeft=A[i-1];
+				}
+				else{
+					maxLeft=Math.max(A[i-1], B[j-1]);
+				}
 
+				if ((m+n)%2 ==1) {
+					return maxLeft;
+				}
+
+				int minRIght=0;
+				if (i==m) {
+					minRight=B[j];
+				}
+				else if (j==n) {
+					minRight=A[i];
+				}
+				else {
+					minRight=Math.min(B[j], A[i]);
+				}
+
+				return (maxLeft+minRight)/2.0;
+			}
+		}
+		return 0.0;
+	}
+}
+```
+
+**Complexity Analysis**
+
+```
+Time Complexity: O(log(min(m,n)))	At first the searching range is [0,m] and the length of this 
+									searching range will be reduced by half after each loop so we
+									only need log(m) loops. Since we do constant operations in 
+									each loop the time complexity is O(log(m) and since m<=n the
+									time complexity is O(log(min(m,n))
+
+Space Complexity: O(1)			We only need constant memory to store 9 local variables so the
+								space complexity is O(1)
+```
 
 
 
