@@ -63,6 +63,8 @@ Chrome Version 71.0.3578.98
     2. [Visit by Row](#zigZagConversionVisitbyRow)
 7. [Reverse Integer](#reverseInteger)
     1. [Pop and Push Digits and Check Before Overflow](#reverseIntegerPopandPush)
+8. [String to Integer](#stringtoInteger)
+    1. [ASCII Conversion](#stringtoIntegerASCII)
     
     
 <br><br><br>
@@ -782,9 +784,9 @@ Visit the characters in the same order as reading the Zig-Zag pattern line by li
 
 Visit all characters in row 0 first, then row 1, then row 2, and so on.
 For all whole numbers k, 
-	* characters in row 0 are located at indexes  k*(2*numRows-2)
-	* characters in row numRows -1 are located at indexes  k*(2*numRows-2)+ numRows -1 
-	* characters in inner row i are located at indexes  k*(2*numRows-2)+i and (k+1)(2*numRows-2)-i
+	* characters in row 0 are located at indexes  k\*(2\*numRows-2)
+	* characters in row numRows -1 are located at indexes  k\*(2\*numRows-2)+ numRows -1 
+	* characters in inner row i are located at indexes  k\*(2\*numRows-2)+i and (k+1)(2\*numRows-2)-i
 
 ```java
 class Solution {
@@ -845,7 +847,66 @@ Input: 120
 Output: 21
 ```
 
+For the purpose of this problem assume that your function returns 0 when the reversed integer overflows
 
+<a name="reverseIntegerPopandPush"></a>
+### Pop and Push Digits and Check Before Overflow 
+
+We can build up the reverse integer one digit at and time and before doing so we can check whether or
+not appedning another digit would cause overflow 
+
+<br><br>
+*Algorithm*
+
+Reversing an integer can be done similarly to reversing a string. We want to repeatedly "pop" the last
+digit off of x and push it to the back of the rev so that in the end rev is the reverse of x. 
+
+To push and pop digits without the help of some auxiliar stack/array we can use math 
+
+```
+//pop operation: 
+pop = x%10; 
+x/=10;
+
+//push operation:
+temp=rev*10+pop;
+rev =temp;
+```
+
+This statement is dangerous however as the statement temp=rev\*10+pop may cause an overflow and luckily
+it is easy to check beforehand whether or not this statement would cause an overflow. 
+
+1. If temp=rev\*10+pop causes an overflow, then rev>=INTMAX/10
+2. If rev> INTMAX/10, then temp=rev\*10+pop is guaranteed to overflow
+3. if rev==INTMAX/10, then temp=rev\*10 + pop will overflow if an only if pop>7
+
+```java
+class Solution {
+	public int reverse(int x) {
+		int rev=0; 
+		while (x!=0) {
+			int pop=x%10;
+			x/=10;
+			if (rev>Integer.MAX_VALUE/10||(rev==Integer.MAX_VALUE/10 && pop>7)) return 0;
+			if (rev<Integer.MIN_VALUE/10||(rev==Integer.MIN_VALUE/10 && pop<-8)) return 0;
+			rev=rev*10 +pop;
+		}
+		return rev;
+	}
+}
+```
+
+**Complexity Analysis**
+```
+Time Complexity:  O(log(x))	There are roughly log10(x) digits in x 
+Space Complexity: O(1)
+```
+
+
+<br><br><br>
+***
+<a name="stringtoInteger"></a>
+## 8-String to Integer (atoi)
 
 
 
