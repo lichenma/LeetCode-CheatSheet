@@ -375,7 +375,85 @@ public class Solution {
 <br><br><br>
 ***
 <a name="medianofTwoSortedArrays"></a>
-## 3-Substring No Repeat 
+## 4-Median of Two Sorted Arrays 
+
+There are two sorted arrays num1 and num2 of size m and n respectively. Find the median of the two 
+sorted arrays. The overall run time complexity should be O(log (m+n)). You may assume nums1 and nums2
+cannot be both empty. 
+
+```
+Example 
+
+nums1 = [1, 3] 
+nums2 = [2]
+
+The median is 2.0
+```
+
+```
+Example 2
+
+nums1= [1, 2] 
+nums2= [3, 4] 
+
+The median is (2+3)/2 = 2.5
+```
+
+<a name="medianofTwoSortedArraysRecursiveApproach"></a>
+
+In statistics the median is used for dividing a set into two equal length subsets with one set being
+always greater than the other set. To approach this problem first we cut A into two parts at a random
+position i: 
+
+```
+         left_A                |           right_A 
+
+  A[0], A[1], ... , A[i-1]         A[i], A[i+1], ... , A[m-1]
+```
+
+Since A has m elements, there are m+1 kinds of cutting as i can range from 0-m. We can also see that
+left_A is empty when i is zero and right_A is empty when i=m
+
+```
+len(left_A) = i and len(right_A)= m-i
+```
+
+We can similarly cut B into two parts at a random position j: 
+
+```
+	left_B			|	right_B
+
+  B[0], B[1], ... , B[j-1]	   B[j], B[j+1], ... , B[n-1]
+```
+  
+Now if we put left_A and left_B into one set and put right_A and right_B into another set and name 
+them left_part and right_part, then we get
+
+```
+	left_part		|	right_part
+  A[0], A[1], ... , A[i-1]	  A[i], A[i+1], ... , A[m-1]
+  B[0], B[1], ... , B[j-1]	  B[j], B[j+1], ... , B[n-1]
+```
+
+If we can ensure that 
+1. the len(left_part) = len(right_part)
+2. max(left_part) <= min(right_part)
+
+then we divide all the elements in {A,B} into two parts with equal length and one part is always
+greater than the other. Then 
+
+```
+median= (max(left_part)+min(right_part))/2
+```
+To ensure these two conditions, we need to ensure: 
+1. i+j= m-i+n-j (or: m-i+n-j+1) if n>m, we just need to set i=0~m, j= (m+n+1)/2 - i
+2. B[j-1]<=A[i] and A[i-1]<=B[j]
+
+
+
+
+
+
 
 
 
