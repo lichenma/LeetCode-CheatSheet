@@ -61,6 +61,8 @@ Chrome Version 71.0.3578.98
 6. [ZigZag Conversion](#zigZagConversion)
     1. [Sort by Row](#zigZagConversionSortbyRow)
     2. [Visit by Row](#zigZagConversionVisitbyRow)
+7. [Reverse Integer](#reverseInteger)
+    1. [Pop and Push Digits and Check Before Overflow](#reverseIntegerPopandPush)
     
     
 <br><br><br>
@@ -813,6 +815,37 @@ Time Complexity: O(n)	where n==len(s) Each index is visited once
 Space Complexity: O(n) 	C++ implementation can achieve O(1) if the return string is not considered 
 			extra space
 ```
+
+
+<br><br><br>
+***
+<a name="reverseInteger"></a>
+## 7-Reverse Integer 
+
+Given a 32- bit signed integer, reverse digits of an integer. 
+
+```
+Example 1: 
+
+Input: 123
+Output: 321
+```
+
+```
+Example 2: 
+
+Input: -123
+Output: -321
+```
+
+```
+Example 3: 
+
+Input: 120 
+Output: 21
+```
+
+
 
 
 
