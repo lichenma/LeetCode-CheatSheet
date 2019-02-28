@@ -544,13 +544,13 @@ class Solution {
 
 ```
 Time Complexity: O(log(min(m,n)))	At first the searching range is [0,m] and the length of this 
-									searching range will be reduced by half after each loop so we
-									only need log(m) loops. Since we do constant operations in 
-									each loop the time complexity is O(log(m) and since m<=n the
-									time complexity is O(log(min(m,n))
+					searching range will be reduced by half after each loop so we
+					only need log(m) loops. Since we do constant operations in 
+					each loop the time complexity is O(log(m) and since m<=n the
+					time complexity is O(log(min(m,n))
 
 Space Complexity: O(1)			We only need constant memory to store 9 local variables so the
-								space complexity is O(1)
+					space complexity is O(1)
 ```
 
 
@@ -581,7 +581,58 @@ Output: "bb"
 <a name="longestPalindromicSubstringLongestCommonSubstring"></a>
 ### Longest Common Substring
 
+Some people will be tempted to come up with this quick solution which is unforunately flawed, "reverse
+S and become S'. Find the longest common substring between S and S' and that will be the longest
+palindromic substring." This will work with some examples but there are some cases where the longest
+common substring is not a valid palindrome. 
 
+	Ex. S="abacdfgdcaba", S'="abacdgfdcaba" 	
+
+	The longest common substring between S and S' is "abacd" and clearly this is not a valid 
+	palindrome
+
+We can solve this problem however by checking if the substring's indices are the same as the reversed
+substring's original indices each time we find a longest common substring. If it is, then we attempt
+to update the longest palindrome found so far, if not we skip this and find the next candidate
+
+**Complexity Analysis**
+```
+Time Complexity: O(n^2) 
+Space Complexity: O(n^2) 
+```
+
+<a name="longestPalindromicSubstringBruteForce"></a>
+### Brute Force 
+
+The obvious brute force solution is to pick all possible starting and ending position for a substring 
+and verify if it is a palindrome 
+
+**Complexity Analysis**
+```
+Time Complexity: O(n^3)		If n is the length of the input string, there are a total of 
+				(n 2) = n(n-1)/2 substrings and since verifying each substring takes 
+				O(n) time, the run time complexity is O(n^3)
+
+Space Complexity: O(1) 
+```
+
+<a name="longestPalindromicSubstringDynamicProgramming"></a>
+### Dynamic Programming 
+
+We can improve on the brute force solution by avoid some unnecessary re-computation while validating 
+palidromes. Consider the word "ababa", if we already know that "bab" is a palindrome then we can 
+determine that ababa is a palindrome by noticing that the two left and right letters connected to bab
+are the same. 
+
+This yields a straight forward dynamic programming solution where we initialize the one and two letters
+palindromes and then work our way up finding all three letters palindromes and so on.
+
+**Complexity Analysis**
+```
+Time Complexity: 	O(n^2)	
+
+Space Complexity: 	O(n^2)	Using O(n^2) space to store the table 
+```
 
 
 
