@@ -52,6 +52,12 @@ Chrome Version 71.0.3578.98
     3. [Optimized Sliding Window](#substringNoRepeatOptimized)
 4. [Median of Two Sorted Arrays](#medianofTwoSortedArrays)
     1. [Recursive Approach](#medianofTwoSortedArraysRecursiveApproach)
+5. [Longest Palindromic Substring](#longestPalindromicSubstring)
+    1. [Longest Common Substring](#longestPalindromicSubstringLongestCommonSubstring)
+    2. [Brute Force](#longestPalindromicSubstringBruteForce)
+    3. [Dynamic Programming](#longestPalindromicSubstringDynamicProgramming)
+    4. [Expand Around Center](#longestPalindromicSubstringExpandAroundCenter)
+    5. [Manacher's Algorithm](#longestPalindromicSubstringManacherAlgorithm)
     
 <br><br><br>
 ***
@@ -400,6 +406,7 @@ The median is (2+3)/2 = 2.5
 ```
 
 <a name="medianofTwoSortedArraysRecursiveApproach"></a>
+### Recursive Approach
 
 In statistics the median is used for dividing a set into two equal length subsets with one set being
 always greater than the other set. To approach this problem first we cut A into two parts at a random
@@ -545,6 +552,59 @@ Time Complexity: O(log(min(m,n)))	At first the searching range is [0,m] and the 
 Space Complexity: O(1)			We only need constant memory to store 9 local variables so the
 								space complexity is O(1)
 ```
+
+
+<br><br><br>
+***
+<a name="longestPalindromicSubstring"></a>
+## 5-Longest Palindromic Substring
+
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length
+of s is 1000. 
+
+```
+Example 1: 
+
+Input: "babad" 
+Output: "bab" 
+
+Note: "aba" is also a valid answer 
+```
+
+```
+Example 2: 
+
+Input: "cbbd"
+Output: "bb" 
+```
+
+<a name="longestPalindromicSubstringLongestCommonSubstring"></a>
+### Longest Common Substring
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
