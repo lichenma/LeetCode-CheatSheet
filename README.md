@@ -58,6 +58,10 @@ Chrome Version 71.0.3578.98
     3. [Dynamic Programming](#longestPalindromicSubstringDynamicProgramming)
     4. [Expand Around Center](#longestPalindromicSubstringExpandAroundCenter)
     5. [Manacher's Algorithm](#longestPalindromicSubstringManacherAlgorithm)
+6. [ZigZag Conversion](#zigZagConversion)
+    1. [Sort by Row](#zigZagConversionSortbyRow)
+    2. [Visit by Row](#zigZagConversionVisitbyRow)
+    
     
 <br><br><br>
 ***
@@ -673,6 +677,160 @@ private int expandAroundCenter(String s, int left, int right) {
 
 There is an O(n) algorithm called Manacher's algorithm, however, it is a non-trivial algorithm and no 
 one would expect you to come up with this algorithm in a 45 minute coding session
+
+
+<br><br><br>
+***
+<a name="zigZagConversion"></a>
+## 6-ZigZag Conversion 
+
+The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
+```
+P   A   H   N
+A P L S I I G
+Y   I   R
+```
+And then read line by line: "PAHNAPLSIIGYIR". Write a code that will take a string and make this 
+conversion given a number of rows: 
+
+```
+string convert(string s, int numRows);
+```
+
+```
+Example 1: 
+
+Input: s="PAYPALISHIRING", numRows=3
+Output: "PAHNAPLSIIGYIR"
+```
+
+```
+Example 2:
+
+Input: s="PAYPALISHIRING", numRows=4
+Output: "PINALSIGYAHRPI"
+
+Explanation:
+
+P           I          N
+A       L   S      I   G
+Y   A       H   R
+P           I
+```
+
+<a name="zigZagConversionSortbyRow"></a>
+### Sort by Row 
+
+By iterating through the string from left to right we can easily determine which row in the Zig-Zag
+pattern that a character belongs to
+
+<br><br>
+*Algorithm*
+
+We can use min(numRows,len(s)) lists to represent the non-empty rows of the Zig-Zag Pattern. 
+Iterate through s from left to right appending each character to the appropriate row. The appropriate
+row can be tracked using two variables: the current row and the current direction. 
+
+The current direction only changes when we moved to the topmost row or moved down to the bottommost 
+row 
+
+```java
+class Solution {
+	public String convert(String s, int numRows) {
+		if (numRows==1) return s;		//if there is only one row return string
+
+		List<StringBuilder> rows=new ArrayList<>();
+		for (int i=0; i<Math.min(numRows, s.length()); i++){
+			rows.add(new StringBuilder());
+		}
+		int curRow=0;
+		boolean goingDown=false;
+
+		for(char c: s.toCharArray()) {
+			rows.get(curRow).append(c);
+			if (curRow==0 || curRow==numRows-1) {
+				goingDown=!goingDown;
+			}
+			curRow+=goingDown ? 1 : -1;
+		}	
+
+		StringBuilder ret= new StringBuilder();
+		for(StringBuilder row:rows) {
+			ret.append(row);
+		}
+		return ret.toString();
+	}
+}
+```
+
+**Complexity Analysis**
+
+```
+Time Complexity:  O(n)	where n==len(s)
+Space Complexity: O(n)
+```
+
+<a name="zigZagConversionVisitbyRow"></a>
+### Visit by Row
+
+Visit the characters in the same order as reading the Zig-Zag pattern line by line
+
+<br><br>
+*Algorithm*
+
+Visit all characters in row 0 first, then row 1, then row 2, and so on.
+For all whole numbers k, 
+	* characters in row 0 are located at indexes  k*(2*numRows-2)
+	* characters in row numRows -1 are located at indexes  k*(2*numRows-2)+ numRows -1 
+	* characters in inner row i are located at indexes  k*(2*numRows-2)+i and (k+1)(2*numRows-2)-i
+
+```java
+class Solution {
+	public String convert(String s, int numRows) {
+		if (numRows==1) return s; 
+
+		StringBuilder ret=new StringBuilder();
+		int n=s.length();
+		int cycleLen= 2* numRows -2;
+
+		for (int i=0; i<numRows; i++) {
+			for (int j=0; j+1<n; j+= cycleLen) {
+				ret.append(s.charAt(j+i));
+				if (i!=0 && i!=numROws-1 && j+cycleLen-i<n) {
+					ret.append(s.charAt(j+cycleLen-i));
+				}
+			}
+			return ret.toString();
+		}
+	}
+}
+```
+
+**Complexity Analysis**
+```
+Time Complexity: O(n)	where n==len(s) Each index is visited once
+
+Space Complexity: O(n) 	C++ implementation can achieve O(1) if the return string is not considered 
+			extra space
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
