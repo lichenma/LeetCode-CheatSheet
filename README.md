@@ -634,6 +634,47 @@ Time Complexity: 	O(n^2)
 Space Complexity: 	O(n^2)	Using O(n^2) space to store the table 
 ```
 
+<a name="longestPalindromicSubstringExpandAroundCenter"></a>
+### Expand Around Center
+
+This approach allows us to solve this problem in O(n^2) time using only constant space complexity. We
+observe that a palindrome mirrors around its enter and therefore a palindrome can be expanded from its
+center and there are only 2n-1 such centers (for palindromes with an even number of letters like 
+"abba" its center is in between two letters).
+
+```java 
+public String longestPalindrome(String s) {
+	if (s==null || s.length() < 1) return "";     //edge case 
+	int start=0, end=0;
+	for (int i=0; i<s.length(); i++) {
+		int len1=expandAroundCenter(s,i,i);
+		int len2=expandAroundCenter(s,i,i+1);
+		int len=Math.max(len1,len2);
+		if (len>end-start) {
+			start= i-(len-1)/2;
+			end=i+len/2
+		}
+	}
+	return s.substring(start,end+1);
+}
+
+private int expandAroundCenter(String s, int left, int right) {
+	int L=left, R=right;
+	while(L>=0 && R<s.length() && s.charAt(L)==s.charAt(R)) {
+		L--;
+		R++;
+	}
+	return R-L-1;
+}
+```
+
+<a name="longestPalindromicSubstringManacherAlgorithm"></a>
+### Manacher's Algorithm 
+
+There is an O(n) algorithm called Manacher's algorithm, however, it is a non-trivial algorithm and no 
+one would expect you to come up with this algorithm in a 45 minute coding session
+
+
 
 
 
