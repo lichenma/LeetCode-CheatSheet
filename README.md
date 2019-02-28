@@ -927,14 +927,93 @@ Note:
 * only the space character ' ' is considered as whitespace character 
 * assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [-2^31, 2^31-1]. If the numerical value is out of the range of representable values, INT_MAX (2^31-1) or INT_MIN (-2^31) is returned
 
+```
+	Example 1: 
 
+	Input: "42"
+	Output: 42
+```
 
+```
+	Example 2: 
 
+	Input: "      -42" 
+	Output: -42
+```
 
+```
+	Example 3:
 
+	Input: "4193 with words "
+	Output: 4193
+```
 
+```
+	Example 4: 
+	
+	Input: "words and 987"
+	Output: 0
+```
 
+```
+	Example 5:
+	
+	Input: "-91283472332"
+	Output: -2147483648 	//out of the range of a 32-bit signed integer so INT_MIN is returned
+```
 
+<a name="stringtoIntegerASCII"></a>
+### ASCII Conversion
+
+Recognize that ASCII characters are actually numbers and 0-9 digits are numbers starting from decimal
+48 (0x30 hexadecimal) 
+
+```
+	'0' is 48
+	'1' is 49
+	...
+	'9' is 57
+```
+So to get the value of any character digit you can just remove the '0' 
+
+```
+	'1' - '0' => 1
+	49  -  48 => 1
+```
+
+```java
+public int myAtoi(String str) {
+	int index=0, sign=1, total=0;
+	
+	//1. Empty string 
+	if (str.length() ==0) return 0;
+
+	//2. Remove Spaces 
+	while(str.charAt(index)==' ' && index < str.length())
+		index++;
+	
+	//3. Handle signs 
+	if (str.charAt(index)=='+' || str.charAt(index)=='-'){
+		sign= str.charAt(index) == '+' ? 1:-1;
+		index++;
+	}
+
+	//4. COnvert number and avoid overflow
+	while(index<str.length()){
+		int digit= str.charAt(index) - '0'; 
+		if (digit<0||digit>9) break;
+
+		//check if total will overflow after 10 times and add digit
+		if (Integer.MAX_VALUE/10 < total || Integer.MAX_VALUE/10 == total 
+		    && Integer.MAX_VALUE%10<digit) {    
+		    return sign==1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+		}
+		total= 10* total+digit;
+		index++;
+	}
+	return total*sign;
+}
+```
 
 
 
