@@ -1978,7 +1978,7 @@ implementation](#trie)
 
 <br><br><br><br><br>
 ***
-<h1 style="text-align: center;"><b><u>Algorithms and Data Structures</u></b><h1>
+#***Algorithms and Data Structures***
 ***
 <br><br><br>
 
