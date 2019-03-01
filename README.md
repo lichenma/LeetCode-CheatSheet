@@ -80,7 +80,7 @@ Chrome Version 71.0.3578.98
 <br><br><br>
 ***
 <a name="twoSum"></a>
-## 1-Two Sum 
+# 1-Two Sum 
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one solution**, and you may not use the same element twice.
@@ -137,7 +137,7 @@ public int[] twoSum(int[] nums, int target) {
 <br><br><br>
 ***
 <a name="addTwoNumbers"></a>
-## 2-Add Two Numbers 
+# 2-Add Two Numbers 
 
 Given two non-empty linked lists representing two non-negative integers with the digits stored in 
 reverse order and each node containing a single digit, add the two numbers and return as a linked list
@@ -195,7 +195,7 @@ class Solution {
 <br><br><br>
 ***
 <a name="substringNoRepeat"></a>
-## 3-Substring No Repeat 
+# 3-Substring No Repeat 
 
 Longest Substring Without Repeating Characters 
 
@@ -399,7 +399,7 @@ public class Solution {
 <br><br><br>
 ***
 <a name="medianofTwoSortedArrays"></a>
-## 4-Median of Two Sorted Arrays 
+# 4-Median of Two Sorted Arrays 
 
 There are two sorted arrays num1 and num2 of size m and n respectively. Find the median of the two 
 sorted arrays. The overall run time complexity should be O(log (m+n)). You may assume nums1 and nums2
@@ -575,7 +575,7 @@ Space Complexity: O(1)			We only need constant memory to store 9 local variables
 <br><br><br>
 ***
 <a name="longestPalindromicSubstring"></a>
-## 5-Longest Palindromic Substring
+# 5-Longest Palindromic Substring
 
 Given a string s, find the longest palindromic substring in s. You may assume that the maximum length
 of s is 1000. 
@@ -696,7 +696,7 @@ one would expect you to come up with this algorithm in a 45 minute coding sessio
 <br><br><br>
 ***
 <a name="zigZagConversion"></a>
-## 6-ZigZag Conversion 
+# 6-ZigZag Conversion 
 
 The string "PAYPALISHIRING" is written in a zigzag pattern on a given number of rows like this: 
 ```
@@ -832,7 +832,7 @@ Space Complexity: O(n) 	C++ implementation can achieve O(1) if the return string
 <br><br><br>
 ***
 <a name="reverseInteger"></a>
-## 7-Reverse Integer 
+# 7-Reverse Integer 
 
 Given a 32- bit signed integer, reverse digits of an integer. 
 
@@ -916,7 +916,7 @@ Space Complexity: O(1)
 <br><br><br>
 ***
 <a name="stringtoInteger"></a>
-## 8-String to Integer (atoi)
+# 8-String to Integer (atoi)
 
 Implement atoi which converts a string to an integer 
 
@@ -1029,7 +1029,7 @@ public int myAtoi(String str) {
 <br><br><br>
 ***
 <a name="palindromeNumber"></a>
-## 9-Palindrome Number
+# 9-Palindrome Number
 
 
 Determines whether an interger is a palindrome. An integer is a palindrome when it reads the same 
@@ -1123,7 +1123,7 @@ class Solution {
 <br><br><br>
 ***
 <a name="regularExpressionMatching"></a>
-## 10-Regular Expression Matching
+# 10-Regular Expression Matching
 
 Given an input string (s) and a pattern (p), implement regular expression matching with support for '.'
 and '*'
@@ -1364,7 +1364,7 @@ public boolean isMatch(String s, String p) {
 <br><br><br>
 ***
 <a name="containerwiththeMostWater"></a>
-## 11- Container with the Most Water 
+# 11-Container with the Most Water 
 
 Given n non negative integers a1,a2, ... , an where each represents a point at coordinate (i, ai). n 
 vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two 
@@ -1450,7 +1450,7 @@ Space complexity: 	O(1) 	Constant space is used
 <br><br><br>
 ***
 <a name="integertoRoman"></a>
-## 12- Integer To Roman 
+# 12-Integer To Roman 
 
 
 
