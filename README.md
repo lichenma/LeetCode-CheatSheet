@@ -65,7 +65,8 @@ Chrome Version 71.0.3578.98
     1. [Pop and Push Digits and Check Before Overflow](#reverseIntegerPopandPush)
 8. [String to Integer](#stringtoInteger)
     1. [ASCII Conversion](#stringtoIntegerASCII)
-    
+9. [Palindrome Number](#palindromeNumber)
+    1. [Revert Half of the Number](#palindromeNumberRevertHalf)
     
 <br><br><br>
 ***
@@ -1014,6 +1015,93 @@ public int myAtoi(String str) {
 	return total*sign;
 }
 ```
+
+
+<br><br><br>
+***
+<a name="palindromeNumber"></a>
+## 9-Palindrome Number
+
+
+Determines whether an interger is a palindrome. An integer is a palindrome when it reads the same 
+backward as forward. 
+
+```
+Example 1: 
+
+Input: 121
+Output: true
+```
+
+```
+Example 2: 
+
+Input: -121
+Output: false 
+Explanation: 	From left to right, it reads -121, meanwhile from right to left it becomes 121- . 
+		Therefore it is not a palindrome
+```
+
+```
+Example 3: 
+
+Input: 10 
+Output: false 
+Explanation: 	Reads 01 from right to left. Therefore it is not a palindrome
+```
+
+<a name="palindromeNumberRevertHalf"></a>
+## Revert Half of the Number
+
+A first idea which may come to mind is to convert the number into a string and check if the string is a
+palindrome but this would require extra non-constant space for creating the string not allowed by the 
+problem description 
+
+Second idea would be reverting the number itself and comparing the number with the original number, if
+they are the same then the number is a palindrome, however if the reversed number is larger than 
+int.MAX we will hit integer overflow problem. 
+
+To avoid the overflow issue of the reverted number, what if we only revert half of the int number? The
+reverse of the last half of the palindrome should be the same as the first half of the number if the 
+number is a palindrome. 
+
+If the input is 1221, if we can revert the last part of the number "1221" from "21" to "12" and compare
+it with the first half of the number "12", since 12 is the same as 12, we know that the number is a 
+palindrome. 
+
+<br><br>
+*Algorithm* 
+
+At the very beginning we can deal with some edge cases. All negative numbers are not palindrome and 
+numbers ending in zero can only be a palindrome if the first digit is also 0 (only 0 satisfies this 
+property) 
+
+Now let's think about how to revert the last half of the number. For the number 1221 if we do 1221%10 
+we get the last digit 1. To get the second last digit we divide the number by 10 1221/10=122 and then
+we can get the last digit again by doing a modulus by 10, 122%10=2. If we multiply the last digit by 
+10 and add the second last digit 1\*10+2=12 which gives us the reverted number we want. COntinuing this
+process would give us the reverted number with more digits. 
+
+Next is how do we know that we've reached the half of the number? 
+Since we divided the number by 10 and multiplied the reversed number by 10 when the original number is
+less than the reversed number, it means we've gone through half of the number digits. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
