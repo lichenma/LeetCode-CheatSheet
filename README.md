@@ -1975,10 +1975,11 @@ We coule optimize LCP queries by storing the set of keys S in a Trie. See this f
 implementation](#trie)
 
 
-***
+
 <br><br><br><br><br>
 ***
-# Algorithms and Data Structures
+<h1 style="text-align: center;"><b><u>Algorithms and Data Structures</u></b><h1>
+***
 <br><br><br>
 
 <a name="trie"></a>
