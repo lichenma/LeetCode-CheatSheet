@@ -1977,8 +1977,6 @@ implementation](#trie)
 
 <br><br><br><br><br>
 ***
-# Algorithms and Data Structures
-***
 <br><br><br>
 
 <a name="trie"></a>
