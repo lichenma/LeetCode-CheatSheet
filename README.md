@@ -41,6 +41,7 @@ Chrome Version 71.0.3578.98
 
 
 ## Quick Access Links 
+### LeetCode 
 1. [Two Sum](#twoSum)
     1. [Brute force](#twoSumBruteForce)
     2. [One pass Hash Table](#twoSumOnePassHashTable) 
@@ -82,6 +83,10 @@ Chrome Version 71.0.3578.98
     1. [Horizontal Scanning](#longestCommonPrefixHorizontalScanning)
     2. [Vertical Scanning](#longestCommonPrefixVerticalScanning)
     3. [Divide and Conquer](#longestCommonPrefixDivideandConquer)
+    4. [Further Thoughts](#longestCommonPrefixFurtherThoughts)
+    
+### Algorithms and Data Structures 
+* [Trie](#trie)
     
 
 <br><br><br>
@@ -1648,41 +1653,312 @@ class Solution {
 }
 ```
 
+<br><br><br>
+***
+<a name="longestCommonPrefix"></a>
+# 14-Longest Common Prefix
+
+Write a function to find the longest common prefix string amongst an array of strings. If there is no 
+common prefix, return an empty string ""
+
+```
+Example 1: 
+
+Input: ["flower", "flow", "flight"]
+Output: "fl"
+```
+
+```
+Example 2: 
+
+Input: ["dog", "racecar", "car"] 
+Output: ""
+
+Explanation: There is no common prefix among the input strings 
+```
+
+*Note:* 
+All given inputs are in lowercase letters a-z
+
+
+<a name="longestCommonPrefixHorizontalScanning"></a>
+## Horizontal Scanning
+
+<br>
+*Intuition:* 
+
+For a start we will describe a simple way of find the longest prefix shared by a set of strings 
+LCP(S1 ... Sn).We will use the observation that: 
+```
+LCP(S1 ... Sn) = LCP(LCP(LCP(S1, S2), S3), ... Sn) 
+```
+
+<br><br>
+*Algorithm:*
+
+To employ this idea, the algorithm iterates through the strings [S1 ... Sn]. finding at each iteration
+i the longest common prefix of strings LCP(S1 ... Si). When LCP(S1 ... Si) is an empty string, the 
+algorithm ends. Otherwise after n iterations, the algorithm returns LCP(S1 ... Sn) 
+
+```
+
+Example: 
+
+{leets, leetcode, leet, leeds}
+   \       /      
+  LCP{1,2} = leets
+  	     leetcode
+	     leet 
+
+	 	\	{leets, leetcode, leet, leeds}
+		 \ 			   /
+
+		 LCP{1,3} = leet
+		 	    leet
+			    leet
+
+			      \          {leets, leetcode, leet, leeds}
+			       \ 				  /
+			       LCP{1,4}   leet
+			       		  leeds
+					  lee
+
+				LCP{1,4} = "lee"
+```
+
+```java
+public String longestCommon Prefix(String[] strs){
+	if (strs.length==0){
+		return ""; 
+	}
+	String prefix=strs[0]; 
+	for (int i=1; i<strs.length; i++) {
+		while (strs[i].indexOf(prefix) != 0) {
+			prefix=prefix.substring(0, prefix.length() -1);
+			if (prefix.isEmpty()) {
+				return "";
+			}
+		}
+		return prefix; 
+	}
+}
+```
+
+**Complexity Analysis**
+```
+Time complexity: 	O(S)	Where S is the sum of all characters in all strings. In the worse case
+				all n strings are the same. The algorithm compares the string S1 with 
+				the other strings [S2 ... Sn]. There are S character comparisons where
+				S is the sum of all characters in the input array 
+
+Space complexity: 	O(1) 	We only used constant extra space 
+```
 
 
 
+<a name="longestCommonPrefixVerticalScanning"></a>
+## Vertical Scanning
+
+Imagine a very short string is at the end of the array. The above approach will still do S comparisons.
+One way to optimize this case is to do vertical scanning. We compare characters from top to bottom on
+the same column (same character index of the strings) before moving on to the next column. 
 
 
+```java
+public String longestCommonPrefix(String[] strs) {
+	if (strs==null || strs.length==) return ""; 
+	for (int i=0; i<strs[0].length(); i++){
+		char c=strs[0].charAt(i); 
+		for (int j=1; j<strs.length; j++) {
+			if (i==strs[j].length() || strs[j].charAt(i)!=c){
+				return strs[0].substring(0,i);
+			}
+		}
+	}
+	return strs[0]; 
+}
+```
+
+**Complexity Analysis**
+
+```
+Time complexity: 	O(S) 	Where S is the sum of all characters in all strings. In the worst case
+				there will be n equal strings with length m and the algorithm performs
+				S=n*m character comparisons. Even the worst case is still the same as 
+				Approach 1, in the best case there are at most n*minLen comparisons 
+				where minLen is the length of the shortest string in the array. 
+
+Space complexity: 	O(1)	We only used constant extra space
+```
 
 
+<a name="longestCommonPrefixDivideandConquer"></a>
+## Divide and Conquer
+
+The idea of the algorithm comes from the associative property of LCP operation. We notice that: 
+LCP(S1 ... Sn) = LCP(LCP(S1 ... Sk), LCP(Sk+1 ... Sn)), where LCP(S1 ... Sn) is the longest common
+prefix in a set of strings [S1 ... Sn], 1<k<n 
+
+<br><br>
+*Algorithm* 
+
+To apply the previous observation, we use the divide and conquer technique, where we split the 
+LCP(Si ... Sj) problem into two subproblems LCP(Si ... Smid) and LCP(Smid+1 ... Sj), where mid is 
+(i+j)/2. We use their solutions lcpLeft and lcpRight to construct the solution of the main problem 
+LCP(Si ... Sj). To accomplish this we compare one by one the characters of lcpLeft and lcpRight till 
+there is no character match. The found common prefix of lcpLeft and lcpRight is the solution of the 
+LCP(Si ... Sj) 
 
 
+```
+				{leetcode, leet, lee, le} 
+
+				    /                \   
+Divide 			{leetcode, leet}            {lee, le} 
+
+Conquer				|			 | 
+
+			     {leet} 		        {le} 
+
+			         \                      /
+
+				 	   {le} 
+
+	Searching for the longest common prefix (LCP) in dataset {leetcode, leet, lee, le} 
+```
+
+```java
+public String longestCommonPrefix(String[] strs) { 
+
+	if (strs == null || strs.length ==0) return "";
+		return longestCommonPrefix(strs, 0, strs.length-1); 
+
+}
+
+private String longestCommonPrefix(String[] strs, int l, int r) { 
+	if (l==r) {
+		return strs[l];
+	}
+	else {
+		int mid=(l+r)/2; 
+		String lcpLeft= longestCommonPrefix(strs,l, mid); 
+		String lcpRight= longestCommonPrefix(strs,mid+1;r); 
+		return commonPrefix(lcpLeft,lcpRight);
+	}
+}
+
+String commonPrefix(String left, String right) {
+	int min=Math.min(left.length(), right.length()); 
+	for (int i=0; i<min; i++) {
+		if (left.charAt(i) !=right.charAt(i) ){
+			return left.substring(0, i);
+		}
+	}
+	return left.substring(0, min);
+}
+```
+
+**Complexity Analysis**
+
+In the worst case we have n equal strings with length m
+
+```
+Time Complexity: O(S)		where S is the number of all characters in the array, S=m*n so time
+				complexity is 2*T(n/2)+O(m). Therefore time complexity is O(S). In the
+				best case the algorithm performs O(minLen * n) comparisons, where
+				minLen is the shortest string of the array 
+
+Space Complexity: O(m*log(n))	There is a memory overhead since we sotre recursive call in the 
+				execution stack. There are log(n) recursive calls, each store needs m
+				space to store the result so space complexity is O(m*log(n))
+```
 
 
+<a name="longestCommonPrefixBinarySearch"></a>
+## Binary Search
+
+The idea is to apply binary search method to find the string with maximum value L, which is common 
+prefix of all the strings. The algorithm searches the space in the interval (0 ... minLen), where 
+minLen is minimum string length and the maximum possible common prefix. Each time search space is 
+divided in two equal parts, one of them is discarded because it is sure that it doesn't contain the 
+solution. There are two possible cases: 
+
+* S[1...mid] is not a common string. This means that for each j>i, S[1...j] is not a common string and we discard the second half of the search space
+* S [1...mid] is common string. This means that for each i<j, S[1...i] is a common string and we discard the first half of the search space, because we try to find longer common prefix 
+
+```
+ 				{leets, leetcode, leetc, leeds} 
+
+						|
+					      
+					     "leets"
+					    /        \
+					 "lee"      "ts"
+
+					     midpoint 
+				
+				"lee" in "leetcode" : yes
+				"lee" in "leetc" : yes
+				"lee" in "leeds" : yes
+
+						|
+
+					     "leets"
+					     /     \
+					  "lee"    "ts"
+					    |      /   \
+
+					  "lee"   "t"   "s"
+					        
+						   midpoint
 
 
+						   "leet" in "leetcode" : yes
+						   "leet" in "leetc" : yes 
+						   "leet" in "leeds" : no
 
+						   LCP= "lee" 
+```
 
+```java
+public String longestCommonPrefix(String[] strs) {
+	if (strs==null || strs.length==0)
+		return "";
+	int minLen=Integer.MAX_VALUE; 
+	for (String str: strs)
+		minLen=Math.min(minLen, str.length());
+	int low=1; 
+	int high=min Len; 
+	while (low<=high) {
+		int middle=(low+high)/2;
+		if (isCommonPrefix(strs, middle)
+			low=middle+1;
+		else 
+			high=middle-1;
+	}
+	return strs[0].substring(0, (low + high)/2);
+} 
 
+private boolean isCommonPrefix(String[] strs, int len) {
+	String str1=strs[0].substring(0,len);
+	for (int i=1; i<strs.length; i++)
+		if (!strs[i].startsWith(str1))
+			return false;
+	return true;
+}
+```
 
+**Complexity Analysis
 
+In the worst case we have n equal strings with length m 
 
+```
+	Time complexity: 	O(S * log(n)), where S is the sum of all characters in all strings. The
+				algorithm makes log(n) iterations, for each of them there are S=m*n 
+				comparisons, which gives in total O(S * log(n)) time complexity
 
+	Space complexity: 	O(1). We only used constant extra space 
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<a name="longestCommonPrefixBinarySearch"></a>
+## Binary Search
