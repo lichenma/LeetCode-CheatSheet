@@ -89,8 +89,11 @@ Chrome Version 71.0.3578.98
 * [Trie](#trie)
     
 
-<br><br><br>
+<br><br><br><br><br>
 ***
+# Leetcode
+<br><br><br>
+
 <a name="twoSum"></a>
 # 1-Two Sum 
 
@@ -1960,5 +1963,27 @@ In the worst case we have n equal strings with length m
 	Space complexity: 	O(1). We only used constant extra space 
 ```
 
-<a name="longestCommonPrefixBinarySearch"></a>
-## Binary Search
+<a name="longestCommonPrefixFurtherThoughts"></a>
+## Further Thoughts 
+
+Considering a slightly different problem: 
+```
+	Given a set of keys S= [S1, S2 ... Sn], find the longest common prefix among a string q and S.
+	This LCP query will be called frequently
+```
+We coule optimize LCP queries by storing the set of keys S in a Trie. See this for [Trie 
+implementation](#trie)
+
+
+***
+<br><br><br><br><br>
+***
+# Algorithms and Data Structures
+<br><br><br>
+
+<a name="trie"></a>
+# Trie 
+
+
+
+
