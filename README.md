@@ -1086,6 +1086,30 @@ Next is how do we know that we've reached the half of the number?
 Since we divided the number by 10 and multiplied the reversed number by 10 when the original number is
 less than the reversed number, it means we've gone through half of the number digits. 
 
+```java
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x<0 || (x%10==0 && x!=0)) {
+            return false;
+        }
+        
+        int revertedNumber=0;
+        while (x>revertedNumber){
+            revertedNumber=x%10+revertedNumber*10;
+            x/=10;
+        }
+        //when the length is an odd number, we can get rid of the middle digit by 
+        //revertedNumber/10
+        
+        //For example when the input is 12321, at the end of the while loop we get x=12, 
+        //revertedNumber=123, since the middle digit doesn't matter in a palindrome we can
+        //simply get rid of it 
+        
+        return x==revertedNumber||x==revertedNumber/10;
+    }
+}
+```
+
 
 
 
