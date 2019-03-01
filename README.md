@@ -1365,7 +1365,21 @@ public boolean isMatch(String s, String p) {
 <a name="containerwiththeMostWater"></a>
 ## 11- Container with the Most Water 
 
+Given n non negative integers a1,a2, ... , an where each represents a point at coordinate (i, ai). n 
+vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two 
+lines, which together with x-axis forns a container such that the container contains the most water. 
 
+```Example: The array [1,8,6,2,5,4,8,3,7] would have a max area of water which is 49. 
+
+		      ^		    ^
+	 These two values form the container which could hold water at a max height of 7, these values
+	 are also 7 array indexes apart from each other so it could hold water at a max width of 7. The
+	 area of water which could be held is thus 7 x 7 = 49
+```
+
+
+<a name="containerwiththeMostWaterBruteForce"></a>
+### Brute Force
 
 
 
