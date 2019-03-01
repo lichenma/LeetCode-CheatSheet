@@ -1517,7 +1517,7 @@ Explanation: M=1000, CM=900, XC=90 and IV=4
 ```
 
 <a name="integertoRomanStringArray"></a>
-# String Array
+## String Array
 
 ```java
 public static String intToRoman(int num) { 
@@ -1537,6 +1537,12 @@ public static String intToRoman(int num) {
 	return M[num/1000] + C[(num%1000)/100] + X[(num%100)/10] + I[num%10]; 
 } 
 ```
+
+<br><br><br>
+***
+<a name="romantoInteger"></a>
+# 13-Roman to Integer
+
 
 
 
