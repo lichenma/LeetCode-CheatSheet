@@ -74,7 +74,8 @@ Chrome Version 71.0.3578.98
 11. [Container With the Most Water](#containerwiththeMostWater)
     1. [Brute Force](#containerwiththeMostWaterBruteForce)
     2. [Two Pointer Approach](#containerwiththeMostWaterTwoPointer)
-
+12. [Integer To Roman](#integertoRoman)
+    1. [String Array](#integertoRomanStringArray)
 
 <br><br><br>
 ***
@@ -92,7 +93,7 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
 <a name="twoSumBruteForce"></a>
-### Brute Force 
+## Brute Force 
 
 ```java 
 public int[] twoSum(int[] nums, int target) {
@@ -112,7 +113,7 @@ public int[] twoSum(int[] nums, int target) {
 * Space complexity:  O(1) 	  we do not allocate any additional memory
 ```
 <a name="twoSumOnePassHashTable"></a>
-### One Pass Hash Table 
+## One Pass Hash Table 
 
 ```java 
 public int[] twoSum(int[] nums, int target) {
@@ -149,7 +150,7 @@ Output 7 -> 0 -> 8
 342 + 465 = 807
 ```
 <a name="addTwoNumbersElementaryMath"></a>
-### Elementary Math Solution
+## Elementary Math Solution
 
 ```java 
 /**
@@ -221,7 +222,7 @@ Explanation: 	The answer is "wke", with the length of 3. Note that the answer mu
 ```
 
 <a name="substringNoRepeatBruteForce"></a>
-### Brute Force 
+## Brute Force 
 
 *Algorithm* 
 
@@ -288,7 +289,7 @@ public class Solution {
 				
 ```
 <a name="substringNoRepeatSlidingWindow"></a>
-### Sliding Window 
+## Sliding Window 
 
 A sliding window is an abstract concept commonly used in array/string problems. A window is a range of 
 elements in the array/string which usually defined by the start and end indices
@@ -367,7 +368,7 @@ Space complexity: 	O(min(m,n))	Same as the brute force method, we need O(k) spac
 
 <a name="substringNoRepeatOptimized"></a>
 
-### Sliding Window Optimized 
+## Sliding Window Optimized 
 
 The previously discussed sliding window approach requires at most 2n steps and this could in fact be
 optimized even further to require only n steps. Instead of using a set to tell if a character exists or
@@ -423,7 +424,7 @@ The median is (2+3)/2 = 2.5
 ```
 
 <a name="medianofTwoSortedArraysRecursiveApproach"></a>
-### Recursive Approach
+## Recursive Approach
 
 In statistics the median is used for dividing a set into two equal length subsets with one set being
 always greater than the other set. To approach this problem first we cut A into two parts at a random
@@ -596,7 +597,7 @@ Output: "bb"
 ```
 
 <a name="longestPalindromicSubstringLongestCommonSubstring"></a>
-### Longest Common Substring
+## Longest Common Substring
 
 Some people will be tempted to come up with this quick solution which is unforunately flawed, "reverse
 S and become S'. Find the longest common substring between S and S' and that will be the longest
@@ -619,7 +620,7 @@ Space Complexity: O(n^2)
 ```
 
 <a name="longestPalindromicSubstringBruteForce"></a>
-### Brute Force 
+## Brute Force 
 
 The obvious brute force solution is to pick all possible starting and ending position for a substring 
 and verify if it is a palindrome 
@@ -634,7 +635,7 @@ Space Complexity: O(1)
 ```
 
 <a name="longestPalindromicSubstringDynamicProgramming"></a>
-### Dynamic Programming 
+## Dynamic Programming 
 
 We can improve on the brute force solution by avoid some unnecessary re-computation while validating 
 palidromes. Consider the word "ababa", if we already know that "bab" is a palindrome then we can 
@@ -652,7 +653,7 @@ Space Complexity: 	O(n^2)	Using O(n^2) space to store the table
 ```
 
 <a name="longestPalindromicSubstringExpandAroundCenter"></a>
-### Expand Around Center
+## Expand Around Center
 
 This approach allows us to solve this problem in O(n^2) time using only constant space complexity. We
 observe that a palindrome mirrors around its enter and therefore a palindrome can be expanded from its
@@ -686,7 +687,7 @@ private int expandAroundCenter(String s, int left, int right) {
 ```
 
 <a name="longestPalindromicSubstringManacherAlgorithm"></a>
-### Manacher's Algorithm 
+## Manacher's Algorithm 
 
 There is an O(n) algorithm called Manacher's algorithm, however, it is a non-trivial algorithm and no 
 one would expect you to come up with this algorithm in a 45 minute coding session
@@ -732,7 +733,7 @@ P           I
 ```
 
 <a name="zigZagConversionSortbyRow"></a>
-### Sort by Row 
+## Sort by Row 
 
 By iterating through the string from left to right we can easily determine which row in the Zig-Zag
 pattern that a character belongs to
@@ -784,7 +785,7 @@ Space Complexity: O(n)
 ```
 
 <a name="zigZagConversionVisitbyRow"></a>
-### Visit by Row
+## Visit by Row
 
 Visit the characters in the same order as reading the Zig-Zag pattern line by line
 
@@ -859,7 +860,7 @@ Output: 21
 For the purpose of this problem assume that your function returns 0 when the reversed integer overflows
 
 <a name="reverseIntegerPopandPush"></a>
-### Pop and Push Digits and Check Before Overflow 
+## Pop and Push Digits and Check Before Overflow 
 
 We can build up the reverse integer one digit at and time and before doing so we can check whether or
 not appedning another digit would cause overflow 
@@ -972,7 +973,7 @@ Note:
 ```
 
 <a name="stringtoIntegerASCII"></a>
-### ASCII Conversion
+## ASCII Conversion
 
 Recognize that ASCII characters are actually numbers and 0-9 digits are numbers starting from decimal
 48 (0x30 hexadecimal) 
@@ -1304,7 +1305,7 @@ Space Complexity:	The only memory we use is the O(TP) boolean entries in our cac
 ```
 
 <a name="regularExpressionMatchingNonRecursive"></a>
-## Non - Recursive
+## Non-Recursive
 
 The recursive programming solutions are pretty confusing so this implementation uses 2D arrays and 
 Dynamic Programming 
@@ -1379,10 +1380,77 @@ lines, which together with x-axis forns a container such that the container cont
 
 
 <a name="containerwiththeMostWaterBruteForce"></a>
-### Brute Force
+## Brute Force
 
+In this case we simply consider the area for every possible pair of the lines and find out the maximum
+area out of those. 
 
+```
+public class Solution {
+	public int maxArea(int[] height) {
+		int maxarea=0; 
+		for (int i=0; i<height.length; i++){
+			for (int j=i+1;j<height.length;j++){
+				maxarea=Math.max(maxarea, Math.min(height[i],height[j])*(j-i));
+			}
+		}
+		return maxarea;
+	}
+}
+```
 
+**Complexity Analysis**
+```
+Time complexity: 	O(n^2) 	Calculating the area for all n(n-1)/2 height pairs 
+Space complexity: 	O(1) 	Constant extra space is used 
+```
+
+<a name="containerwiththeMostWaterTwoPointer"></a>
+## Two Pointer Approach
+
+The intuition behind this approach is that the area formed between the lines will always be limited by 
+the height of the shorter line. Further, the farther the lines, the more will be the area obtained. 
+
+We take two pointers, one at the beginning and one at the end of the array constituting the length of 
+the lines. Further, we maintain a variable maxarea to store the maximum area obtained till now. At 
+every step, we find out the area formed between them, update maxarea and move the pointer pointing to 
+the shorter line towards the other end by one step. 
+
+Initially we consider the area constituting the exterior most lines. Now to maximize the area we need
+to consider the area between the lines of larger lengths. If we try to move the pointer at the longer
+line inwards, we won't gain any increase in area, since it is limited by the shorter line. But moving
+the shorter line's pointer could turn out to be benefical, as per the same argument, despite the 
+reduction in width. This is done since a relatively longer line obtained by moving the shorter line's 
+pointer might overcome the reduction in area caused by the width reduction. 
+
+```java
+public class Solution {
+	public int maxArea(int[] height) {
+		int maxarea=0, l=0, r=height.length-1; 
+		while (l<r){
+			maxarea=Math.max(maxarea,Math.min(height[l],height[r])*(r-l));
+			if (height[l]<height[r]){
+				l++;
+			}
+			else{
+				r--;
+			}
+		}
+		return maxarea; 
+	}
+}
+```
+
+**Complexity Analysis**
+```
+Time complexity: 	O(n) 	Single pass
+Space complexity: 	O(1) 	Constant space is used 
+```
+
+<br><br><br>
+***
+<a name="integertoRoman"></a>
+## 12- Integer To Roman 
 
 
 
