@@ -91,7 +91,7 @@ Chrome Version 71.0.3578.98
 
 <br><br><br><br><br>
 
-<h1 style="align:center:">Leetcode</h1>
+<h1 style="text-align: center:">Leetcode</h1>
 <br><br><br>
 
 <a name="twoSum"></a>
