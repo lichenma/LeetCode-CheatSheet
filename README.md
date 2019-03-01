@@ -92,6 +92,7 @@ Chrome Version 71.0.3578.98
 <br><br><br><br><br>
 ***
 # Leetcode
+***
 <br><br><br>
 
 <a name="twoSum"></a>
@@ -1978,7 +1979,7 @@ implementation](#trie)
 
 <br><br><br><br><br>
 ***
-# [Algorithms and Data Structures]
+# Algorithms and Data Structures
 ***
 <br><br><br>
 
