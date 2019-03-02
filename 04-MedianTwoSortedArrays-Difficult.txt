@@ -153,13 +153,13 @@ class Solution {
 
 
 Time Complexity: O(log(min(m,n)))	At first the searching range is [0,m] and the length of this 
-					searching range will be reduced by half after each loop so we
-					only need log(m) loops. Since we do constant operations in 
-					each loop the time complexity is O(log(m) and since m<=n the
-					time complexity is O(log(min(m,n))
+									searching range will be reduced by half after each loop so we
+									only need log(m) loops. Since we do constant operations in 
+									each loop the time complexity is O(log(m) and since m<=n the
+									time complexity is O(log(min(m,n))
 
 Space Complexity: O(1)			We only need constant memory to store 9 local variables so the
-					space complexity is O(1)
+								space complexity is O(1)
 
 //===================================================================================================//
 

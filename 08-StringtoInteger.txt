@@ -43,11 +43,13 @@ Note:
 
 
 	Example 4: 
+	
 	Input: "words and 987"
 	Output: 0
 
 
 	Example 5:
+	
 	Input: "-91283472332"
 	Output: -2147483648 	//out of the range of a 32-bit signed integer so INT_MIN is returned
 
