@@ -2084,7 +2084,9 @@ public class Trie {
 In the worst case query q has length m and is equal to all n strings of the array 
 
 Time Complexity:   O(S)   where S is the number of all characters in the array, LCP query O(m) 
-  			  Trie build has O(S) time complexity. To find the common prefix of q in the Tr				 ie takes in the worst O(m). 
+  			  Trie build has O(S) time complexity. To find the common prefix of q 
+			  in the Trie takes in the worst O(m). 
+
 Space complexity:  O(S)   we only used additional S extra space for the Trie. 
 ```
 
