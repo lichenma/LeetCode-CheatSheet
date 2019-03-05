@@ -84,7 +84,10 @@ Chrome Version 71.0.3578.98
     2. [Vertical Scanning](#longestCommonPrefixVerticalScanning)
     3. [Divide and Conquer](#longestCommonPrefixDivideandConquer)
     4. [Further Thoughts](#longestCommonPrefixFurtherThoughts)
-    
+15. [Three Sum](#threeSum)
+    1. [Sorted Array](#threeSumSortedArray)
+
+
 ### Algorithms and Data Structures 
 * [Trie](#trie)
     
@@ -1972,6 +1975,97 @@ Considering a slightly different problem:
 ```
 We coule optimize LCP queries by storing the set of keys S in a Trie. See this for [Trie 
 implementation](#trie)
+
+
+
+
+<br><br><br>
+***
+<a name="threeSum"></a>
+# 15-3Sum
+
+
+Given an array "nums" of n integers, are there elements a, b, c in nums such that a+b+c=0? Find all 
+unique triplets in the array which gives the sum of zero. 
+
+Note: 
+
+The solution set must not contain duplicate triplets 
+
+```
+Example: 
+
+Given array nums = [-1, 0, 1, 2, -1, -4]. 
+
+A solution set is: 
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+```
+
+<a name="threeSumSortedArray"></a>
+## Sorted Array
+
+
+The method is to sort an input array and then run through all indices of a possible first element of a
+triplet. For each element we make another 2Sum sweep of the remaining part of the array. Also we want
+to skip elements to avoid duplicates in the answer without expending extra memory. 
+
+```
+public List<List<Integer>> threeSum(int[] num) {
+    
+    //Arrays.sort re-arranges the array of integers in ascending order
+    //ex. [1, 2, 3, 4]
+
+    Arrays.sort(num);
+    List<List<Integer>> res = new LinkedList<>(); 
+    for (int i = 0; i < num.length-2; i++) {
+        if (i == 0 || (i > 0 && num[i] != num[i-1])) {
+            
+	    //This lets us skip some of the duplicate entries in the array
+	    
+	    int lo = i+1, hi = num.length-1, sum = 0 - num[i];
+
+	    //This is for the 2 Sum sweep 
+
+            while (lo < hi) {
+                if (num[lo] + num[hi] == sum) {
+                    res.add(Arrays.asList(num[i], num[lo], num[hi]));
+                    while (lo < hi && num[lo] == num[lo+1]) lo++;
+                    while (lo < hi && num[hi] == num[hi-1]) hi--;
+
+		    //This lets us skip some of the duplicate entries in the array
+
+                    lo++; hi--;
+                } else if (num[lo] + num[hi] < sum) lo++;
+                else hi--;
+
+		//This allows us to optimize slightly since we know that the array is sorted
+           }
+        }
+    }
+    return res;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
