@@ -84,9 +84,10 @@ Chrome Version 71.0.3578.98
     2. [Vertical Scanning](#longestCommonPrefixVerticalScanning)
     3. [Divide and Conquer](#longestCommonPrefixDivideandConquer)
     4. [Further Thoughts](#longestCommonPrefixFurtherThoughts)
-15. [Three Sum](#threeSum)
+15. [3Sum](#threeSum)
     1. [Sorted Array](#threeSumSortedArray)
-
+16. [3Sum Closest](#threeSumClosest)
+    1. [3 Pointers](#threeSumClosestThreePointers)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2094,32 +2095,6 @@ Space complexity:  O(S)   we only used additional S extra space for the Trie.
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <br><br><br>
 ***
 <a name="threeSum"></a>
@@ -2190,6 +2165,34 @@ public List<List<Integer>> threeSum(int[] num) {
 }
 ```
 
+**Complexity Analysis**
+```
+Time Complexity:  O(n^2)   We go through a maximum of n elements for the first element of a triplet, 
+			   and then when making a bi-directional 2Sum sweep of the remaining part of 
+			   the array we also go through a maxiumum of n elements. 
+
+Space Complexity: O(1)	   If we assume the return linked list is not extra space, then we do not 
+			   allocate any significant extra space
+```
+
+
+
+<br><br><br>
+***
+<a name="threeSumClosest"></a>
+# 15-3Sum Closest
+
+Given an array nums of n integers and an integer target, find three integers in nums such that the sum
+is closest to target. Return the sum of the three integers. You may assume that each input would have
+exactly one solution. 
+
+```
+Example:
+
+Given array nums=[-1, 2, 1, -4], and target=1.
+
+The sum that is closest to the target is 2. (-1+2+1=2)
+```
 
 
 
