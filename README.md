@@ -88,6 +88,10 @@ Chrome Version 71.0.3578.98
     1. [Sorted Array](#threeSumSortedArray)
 16. [3Sum Closest](#threeSumClosest)
     1. [3 Pointers](#threeSumClosestThreePointers)
+17. [Letter Combinations of a Phone Number](#letterCombinationsofaPhoneNumber) 
+    1. [Backtracking](#letterCombinationsofaPhoneNumberBacktracking)
+    2. [FIFO Queue](#letterCombinationsofaPhoneNumberFIFOQueue)
+
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2180,7 +2184,7 @@ Space Complexity: O(1)	   If we assume the return linked list is not extra space
 <br><br><br>
 ***
 <a name="threeSumClosest"></a>
-# 15-3Sum Closest
+# 16-3Sum Closest
 
 Given an array nums of n integers and an integer target, find three integers in nums such that the sum
 is closest to target. Return the sum of the three integers. You may assume that each input would have
@@ -2195,7 +2199,39 @@ The sum that is closest to the target is 2. (-1+2+1=2)
 ```
 
 
+<a name="threeSumClosestThreePointers"></a>
+## 3 Pointers
 
+Similar to the previous 3Sum problem, we use three pointers to point to the current element, next 
+element and the last element. If the sum is less than the target, it means that we need to add a larger
+element so next element move to the next. If the sum is greater, it means we have to add a smaller 
+element so last element move to the second last element. Keep doing this until the end. Each time 
+compare the difference between sum and target, if it is less than minimum difference so far, then 
+replace result with it, otherwise continue iterating. 
+
+```
+public class Solution {
+		public int threeSumClosest(int[] num, int target) {
+		int result=num[0] + num[1] + num[num.length-1];
+		Arrays.sort(num);
+		for (int i=0; i<num.length -2; i++) {
+			int start= i+1, end = num.length -1;
+			while (start < end) {
+				int sum = num[i] + num[start] + num[end];
+				if (sum > target) {
+					end--;
+				} else {
+					start++;
+				}
+				if (Math.abs(sum-target) < Math.abs(result-target)) {
+					result=sum;
+				}
+			}
+		}
+		return result;
+	}
+}
+```
 
 
 
