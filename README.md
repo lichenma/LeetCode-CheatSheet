@@ -2278,20 +2278,20 @@ letter combination and the next digits to check.
 * If there are no more digits to check that means the current combination is done 
 * If there are still digits to check: 
 	* Iterate over the letters mapping to the next available digit
-	* Append the current letter to the current combination 
+	* Append the current letter to the current combination and proceed to check next digits: 
+
 
 ```
 	  combination = combination + letter
-```
 
-	* Proceed to check next digits:
-
-```
 	  backtrack(combination + letter, next_digits[1:]).
 ```
 
 
+**Visual Representation** 
 
+```
+					
 
 
 
