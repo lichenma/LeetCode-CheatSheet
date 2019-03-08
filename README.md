@@ -2279,10 +2279,13 @@ letter combination and the next digits to check.
 * If there are still digits to check: 
 	* Iterate over the letters mapping to the next available digit
 	* Append the current letter to the current combination 
+
 ```
 	  combination = combination + letter
 ```
-	* Proceed to check next digits: 
+
+	* Proceed to check next digits:
+
 ```
 	  backtrack(combination + letter, next_digits[1:]).
 ```
