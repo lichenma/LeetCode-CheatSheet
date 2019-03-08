@@ -114,6 +114,8 @@ Given nums = [2, 7, 11, 15], target = 9,
 Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
+
+<br><br>
 <a name="twoSumBruteForce"></a>
 ## Brute Force 
 
@@ -171,6 +173,9 @@ Output 7 -> 0 -> 8
 
 342 + 465 = 807
 ```
+
+
+<br><br>
 <a name="addTwoNumbersElementaryMath"></a>
 ## Elementary Math Solution
 
@@ -214,6 +219,8 @@ class Solution {
 * Time Complexity:  O(max(m,n))         depends on the lengths of the two linked lists 
 * Space Complexity: O(max(m,n))		the maximum length of the new list is max(m,n)+1
 ```
+
+
 <br><br><br>
 ***
 <a name="substringNoRepeat"></a>
@@ -243,6 +250,7 @@ Explanation: 	The answer is "wke", with the length of 3. Note that the answer mu
 		"pwke" is a subsequence and not a substring 
 ```
 
+<br><br>
 <a name="substringNoRepeatBruteForce"></a>
 ## Brute Force 
 
@@ -310,6 +318,8 @@ public class Solution {
 				
 				
 ```
+
+<br><br>
 <a name="substringNoRepeatSlidingWindow"></a>
 ## Sliding Window 
 
@@ -388,8 +398,8 @@ Space complexity: 	O(min(m,n))	Same as the brute force method, we need O(k) spac
 ```
 
 
+<br><br>
 <a name="substringNoRepeatOptimized"></a>
-
 ## Sliding Window Optimized 
 
 The previously discussed sliding window approach requires at most 2n steps and this could in fact be
@@ -445,6 +455,8 @@ nums2= [3, 4]
 The median is (2+3)/2 = 2.5
 ```
 
+
+<br><br>
 <a name="medianofTwoSortedArraysRecursiveApproach"></a>
 ## Recursive Approach
 
@@ -618,6 +630,7 @@ Input: "cbbd"
 Output: "bb" 
 ```
 
+<br><br>
 <a name="longestPalindromicSubstringLongestCommonSubstring"></a>
 ## Longest Common Substring
 
@@ -640,7 +653,7 @@ to update the longest palindrome found so far, if not we skip this and find the 
 Time Complexity: O(n^2) 
 Space Complexity: O(n^2) 
 ```
-
+<br><br>
 <a name="longestPalindromicSubstringBruteForce"></a>
 ## Brute Force 
 
@@ -655,7 +668,7 @@ Time Complexity: O(n^3)		If n is the length of the input string, there are a tot
 
 Space Complexity: O(1) 
 ```
-
+<br><br>
 <a name="longestPalindromicSubstringDynamicProgramming"></a>
 ## Dynamic Programming 
 
@@ -673,7 +686,7 @@ Time Complexity: 	O(n^2)
 
 Space Complexity: 	O(n^2)	Using O(n^2) space to store the table 
 ```
-
+<br><br>
 <a name="longestPalindromicSubstringExpandAroundCenter"></a>
 ## Expand Around Center
 
@@ -708,6 +721,7 @@ private int expandAroundCenter(String s, int left, int right) {
 }
 ```
 
+<br><br>
 <a name="longestPalindromicSubstringManacherAlgorithm"></a>
 ## Manacher's Algorithm 
 
@@ -754,6 +768,7 @@ Y   A       H   R
 P           I
 ```
 
+<br><br>
 <a name="zigZagConversionSortbyRow"></a>
 ## Sort by Row 
 
@@ -806,6 +821,7 @@ Time Complexity:  O(n)	where n==len(s)
 Space Complexity: O(n)
 ```
 
+<br><br>
 <a name="zigZagConversionVisitbyRow"></a>
 ## Visit by Row
 
@@ -881,6 +897,7 @@ Output: 21
 
 For the purpose of this problem assume that your function returns 0 when the reversed integer overflows
 
+<br><br>
 <a name="reverseIntegerPopandPush"></a>
 ## Pop and Push Digits and Check Before Overflow 
 
@@ -994,6 +1011,8 @@ Note:
 	Output: -2147483648 	//out of the range of a 32-bit signed integer so INT_MIN is returned
 ```
 
+
+<br><br>
 <a name="stringtoIntegerASCII"></a>
 ## ASCII Conversion
 
@@ -1081,6 +1100,8 @@ Output: false
 Explanation: 	Reads 01 from right to left. Therefore it is not a palindrome
 ```
 
+
+<br><br>
 <a name="palindromeNumberRevertHalf"></a>
 ## Revert Half of the Number
 
@@ -1211,7 +1232,7 @@ Input:
 	Output: false 
 ```
 
-
+<br><br>
 <a name="regularExpressionMatchingRecursion"></a>
 ## Recursion
 
@@ -1260,6 +1281,7 @@ Space Complexity:	For every call to match, we will create those strings as descr
 			unique suffixes of P and T that are actually required 
 ```
 
+<br><br>
 <a name="regularExpressionMatchingDynamicProgramming"></a>
 ## Dynamic Programming
 
@@ -1326,6 +1348,7 @@ Space Complexity:	The only memory we use is the O(TP) boolean entries in our cac
 			space complexity is O(TP) 
 ```
 
+<br><br>
 <a name="regularExpressionMatchingNonRecursive"></a>
 ## Non-Recursive
 
@@ -1427,6 +1450,7 @@ Time complexity: 	O(n^2) 	Calculating the area for all n(n-1)/2 height pairs
 Space complexity: 	O(1) 	Constant extra space is used 
 ```
 
+<br><br>
 <a name="containerwiththeMostWaterTwoPointer"></a>
 ## Two Pointer Approach
 
@@ -1628,7 +1652,7 @@ Input: "MCMXCIV"
 Output: 1994
 Explanation: M=1000, CM=900, XC=90 and IV=4
 ```
-
+<br><br>
 <a name="romantoIntegerCharacterArray"></a>
 ## Character Array
 
@@ -1690,7 +1714,7 @@ Explanation: There is no common prefix among the input strings
 *Note:* 
 All given inputs are in lowercase letters a-z
 
-
+<br><br>
 <a name="longestCommonPrefixHorizontalScanning"></a>
 ## Horizontal Scanning
 
@@ -1765,7 +1789,7 @@ Space complexity: 	O(1) 	We only used constant extra space
 ```
 
 
-
+<br><br>
 <a name="longestCommonPrefixVerticalScanning"></a>
 ## Vertical Scanning
 
@@ -1801,7 +1825,7 @@ Time complexity: 	O(S) 	Where S is the sum of all characters in all strings. In 
 Space complexity: 	O(1)	We only used constant extra space
 ```
 
-
+<br><br>
 <a name="longestCommonPrefixDivideandConquer"></a>
 ## Divide and Conquer
 
@@ -1883,7 +1907,7 @@ Space Complexity: O(m*log(n))	There is a memory overhead since we sotre recursiv
 				space to store the result so space complexity is O(m*log(n))
 ```
 
-
+<br><br>
 <a name="longestCommonPrefixBinarySearch"></a>
 ## Binary Search
 
@@ -1969,7 +1993,7 @@ In the worst case we have n equal strings with length m
 
 	Space complexity: 	O(1). We only used constant extra space 
 ```
-
+<br><br>
 <a name="longestCommonPrefixFurtherThoughts"></a>
 ## Further Thoughts 
 
@@ -2123,7 +2147,7 @@ A solution set is:
   [-1, -1, 2]
 ]
 ```
-
+<br><br>
 <a name="threeSumSortedArray"></a>
 ## Sorted Array
 
