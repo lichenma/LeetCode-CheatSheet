@@ -2234,6 +2234,61 @@ public class Solution {
 ```
 
 
+<br><br><br>
+***
+<a name="letterCombinationsofaPhoneNumber"></a>
+# 17-Letter Combinations of a Phone Number 
+
+Given a string contianing digits from 2-9 inclusive, return all possible letter combinations that the 
+number could represent. 
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not
+map to any letters. 
+
+```
+2 - abc 	3 - def 	4 - ghi		5 - jkl		6 - mno		7 - pqrs 	8 - tuv
+				
+						9 - wxyz
+```
+
+
+```
+Example: 
+
+
+Input: "23" 
+
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]. 
+```
+
+
+*Note: The above answer is in lexicographical order but the answer can be in any order*
+
+<a name="letterCombinationsofaPhoneNumberBacktracking"></a>
+## Backtracking 
+
+
+Backtracking is an algorithm for finding all solutions by exploring all potential candidates. If the 
+solution candidate turns to not be a solution (or at least not the last one), backtracking algorithm 
+discards it by making some changes on the previous step, ie *backtracks* and then tries again. 
+
+Here is a backtrack function backtrack(combination, next_digits) which takes as arguments an ongoing 
+letter combination and the next digits to check. 
+
+* If there are no more digits to check that means the current combination is done 
+* If there are still digits to check: 
+	* Iterate over the letters mapping to the next available digit
+	* Append the current letter to the current combination 
+```
+	  combination = combination + letter
+```
+	* Proceed to check next digits: 
+```
+	  backtrack(combination + letter, next_digits[1:]).
+```
+
+
+
 
 
 
