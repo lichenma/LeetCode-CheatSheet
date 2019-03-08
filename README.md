@@ -2198,7 +2198,7 @@ Given array nums=[-1, 2, 1, -4], and target=1.
 The sum that is closest to the target is 2. (-1+2+1=2)
 ```
 
-
+<br><br>
 <a name="threeSumClosestThreePointers"></a>
 ## 3 Pointers
 
@@ -2264,6 +2264,7 @@ Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
 
 *Note: The above answer is in lexicographical order but the answer can be in any order*
 
+<br><br>
 <a name="letterCombinationsofaPhoneNumberBacktracking"></a>
 ## Backtracking 
 
@@ -2380,7 +2381,7 @@ Space Complexity: 	O(3^N * 4^M)	since one has to keep 3^N * 4^M solutions
 
 
 
-
+<br><br>
 <a name="letterCombinationsofaPhoneNumberFIFOQueue"></a>
 ## First In First Out (FIFO) Queue 
 
