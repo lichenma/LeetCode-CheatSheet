@@ -2381,6 +2381,44 @@ Space Complexity: 	O(3^N * 4^M)	since one has to keep 3^N * 4^M solutions
 
 
 
+<a name="letterCombinationsofaPhoneNumberFIFOQueue"></a>
+## First In First Out (FIFO) Queue 
+
+This solution utilizes the Single Queue Breadth First Search (BFS) which is an algorithm for traversing
+or searching tree or graph data structures. It starts at the tree root and explores all of the neighbor
+nodes. 
+
+
+```java 
+public List<String> letterCombinations(String digits) {
+	
+	LinkedList<String> ans = new LinkedList<String>();
+	if (digits.isEmpty()) return ans; 
+	String[] mapping = new String[] {"0", "1", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", {wxyz"};
+	ans.add(""); 
+	for (int i = 0; i<digits.length(); i++) {
+		int x = Character.getNumericValue(digits.charAt(i)); 
+		
+		//we terminate the while loop when we encounter a new-formed string which is more than
+		//the current level i 
+		
+		//peek retrieves the first value of the linked list
+		while (ans.peek().length==i){
+			
+			//removes the head or the first value in the linkedlist
+			String t = ans.remove(); 
+			for (char s : mapping[x].toCharArray()) {
+				ans.add(t+s);
+				//this works because add appends to the end of the list
+			}
+		}
+		return ans; 
+	}
+}
+```
+
+
+
 
 
 
