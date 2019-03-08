@@ -91,7 +91,8 @@ Chrome Version 71.0.3578.98
 17. [Letter Combinations of a Phone Number](#letterCombinationsofaPhoneNumber) 
     1. [Backtracking](#letterCombinationsofaPhoneNumberBacktracking)
     2. [FIFO Queue](#letterCombinationsofaPhoneNumberFIFOQueue)
-
+18. [4Sum](#fourSum)
+    1. [Sorted Array](#fourSumSortedArray)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2453,6 +2454,32 @@ Time Complexity: 	O(3^N * 4^M) 	where N is the number of digits in the input tha
 
 Space Complexity: 	O(3^N * 4^M)	since one has to keep 3^N * 4^M solutions 
 ```
+
+<br><br><br>
+***
+<a name="fourSum"></a>
+# 18-4Sum
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
