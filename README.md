@@ -2460,11 +2460,74 @@ Space Complexity: 	O(3^N * 4^M)	since one has to keep 3^N * 4^M solutions
 <a name="fourSum"></a>
 # 18-4Sum
 
+Given an array nums of n integers and an integer target, are there elements a, b, c, and d in nums such
+that a + b + c + d = target? Find all unique quadruplets in the array which gives the sum of target
 
 
 
+*Note:*
+The solution set must not contain duplicate quadruplets 
 
 
+```
+Example: 
+
+
+Given array nums = [1, 0, -1, 0, -2, 2], and target = 0
+
+
+A solution set is: 
+
+[
+  [-1,  0, 0, 1],
+  [-2, -1, 1, 2],
+  [-2,  0, 0, 2]
+]
+```
+
+
+<br><br>
+<a name="fourSumSortedArray"></a>
+## Sorted Array  
+
+The idea is the same as the other numbered sum problems like 2sum and 3sum. We sort the array and then
+proceed to interate through the values until we end up with a result that we are looking for. 
+
+```java 
+public class Solution {
+	public List<List<Integer>> fourSum(int[] num, int target) {
+		
+		ArrayList<List<Integer>> ans = new ArrayList<>();
+		
+		if (num.length<4) {
+			
+			return ans;
+		}
+		Arrays.sort(num); 
+		
+		for (int i=0; i<num.length-3; i++) {
+			
+			if (num[i]+num[i+1]+num[i+2]+num[i+3]>target) {
+				
+				break;
+				//first candidate too large, search finished
+			}
+
+			if (num[i]+num[num.length-1]+num[num.length-2]+num[num.length-3]<target) {
+				
+				continue;
+				//first candidate too small 
+			}
+
+			if(i>0 && num[i]==num[i-1]) {
+				
+				continue;
+				//prevents duplicate in ans list
+			}
+
+		}
+	}
+}
 
 
 
