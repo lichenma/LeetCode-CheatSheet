@@ -2505,7 +2505,8 @@ public class Solution {
 		}
 		Arrays.sort(num); 
 		
-		for (int i=0; i<num.length-3; i++) {
+		for (int i=0; i<num.length-3; i++) {   //picking the first candidate must leave room
+						       //for the other values 
 			
 			if (num[i]+num[i+1]+num[i+2]+num[i+3]>target) {
 				
@@ -2524,7 +2525,12 @@ public class Solution {
 				continue;
 				//prevents duplicate in ans list
 			}
-
+			
+			for (int j=i+1; j<num.length-2; j++) {   //picking the second candidate must
+								 //leave room for other values 
+				
+				if(num[i]+num[j]+num[j+1]
+			}
 		}
 	}
 }
