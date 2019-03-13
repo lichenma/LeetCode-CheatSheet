@@ -2529,7 +2529,35 @@ public class Solution {
 			for (int j=i+1; j<num.length-2; j++) {   //picking the second candidate must
 								 //leave room for other values 
 				
-				if(num[i]+num[j]+num[j+1]
+				if (num[i]+num[j]+num[j+1]+num[j+2]>target) {
+					
+					break;
+					//second candidate too large
+				}
+
+				if (num[i]+num[j]+num[num.length-1]+num[num.length-2]<target) {
+				
+					continue;
+					//second candidate too small
+				}
+
+				if(j>i+1 && num[j]==num[j-1]) {
+					
+					continue;
+					//prevents duplicate results in ans list
+				}
+
+				int low=j+1, high=num.length-1;
+				
+				//two pointer search
+				while(low<high) {
+					
+					int sum=num[i]+num[j]+num[low]+num[high];
+					if (sum==target) {
+						
+						ans.add
+					}
+				}
 			}
 		}
 	}
