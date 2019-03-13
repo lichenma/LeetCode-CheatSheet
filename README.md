@@ -93,6 +93,10 @@ Chrome Version 71.0.3578.98
     2. [FIFO Queue](#letterCombinationsofaPhoneNumberFIFOQueue)
 18. [4Sum](#fourSum)
     1. [Sorted Array](#fourSumSortedArray)
+19. [Remove Nth Node From End of List](#removeNthNodefromEndofList)
+    1. [Two Pass Algorithm](#removeNthNodefromEndofListTwoPassAlgorithm)
+    2. [One Pass Algorithm](#removeNthNodefromEndofListOnePassAlgorithm)
+
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2555,14 +2559,43 @@ public class Solution {
 					int sum=num[i]+num[j]+num[low]+num[high];
 					if (sum==target) {
 						
-						ans.add
+						ans.add(Arrays.asList(num[i],num[j],num[low],num[high]));
+						while(low<high&&num[low]==num[low+1]) {
+							low++; //skipping over duplicates
+						}
+
+						while(low<high && num[high]==num[high-1] {
+							high--; //skipping over duplicates 
+						}
+						low++;
+						high--;
+					}
+
+					//moving window
+					else if (sum<target) {
+						low++;
+					}
+
+					else {
+						high--;
 					}
 				}
 			}
 		}
+		return ans;
 	}
 }
+```
 
+
+
+
+
+
+<br><br><br>
+***
+<a name="removeNthNodefromeEndofList"></a>
+# 19-Remove Nth Node From End of List 
 
 
 
