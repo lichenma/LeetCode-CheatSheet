@@ -2620,23 +2620,113 @@ Could you do this in one pass?
 
 
 
+
+
+
+
 <br><br>
 <a name="removeNthNodefromEndofListTwoPassAlgorithm"></a>
 ## Two Pass Algorithm
 
+
 **Intuition**
 
+We notice that the problem could be simply reduced to another one: Remove the (L-n+1)th node from the
+beginning of the list, where L is the list length. This problem is easy to solve once we found the 
+list length L. 
 
 
 
 
 
+<br><br>
+**Algorithm** 
+
+First we will add an auxiliary "dummy" node, which points to the list head. The "dummy" node is used to
+simplify some corner cases such as a list with only one node or removing the head of the list. On the 
+first pass, find the list length L. Then we set a pointer to the dummy node and start to move it 
+through the list till it comes to the (L-n)th node. We relink next pointer of the (L-n)th node to the
+(L-n+2)th node and we are done. 
+
+
+```
+	D -> 1 -> 2 -> 3 -> 4 -> NULL
+
+		    |
+		    v
+
+	D -> 1 -> 2 -> 4 -> NULL
+```
+
+
+
+```java 
+public ListNode removeNthFromEnd(ListNode head, int n) {
+	
+	ListNode dummy = new ListNode(0); 
+	dummy.next = head; 
+	int length =0; 
+	ListNode first = head; 
+	
+	while (first!=null) {
+		
+		length++;
+		first=first.next;
+	}
+
+	length -= n; 
+	first = dummy;
+	while (length>0) {
+		
+		length--;
+		first=first.next;
+	}
+	first.next=first.next.next;
+	return dummy.next; 
+}
+```
+
+**Complexity Analysis** 
+```
+Time Complexity: 	O(L) 	The algorithm makes two traversals of the list, first to calculate the 
+				list length L and second to find the (L-n)th node. There are 2L-n 
+				operations and time complexity is O(L)
+
+Space Complexity: 	O(1) 	We only used constant extra space
+```
 
 
 
 
 
+<br><br>
+<a name="removeNthNodefromEndofListOnePassAlgorithm"></a>
+## One Pass Algorithm
 
+The previous algorithm could be optimized to one pass. Instead of one pointer, we could use two 
+pointers. The first pointer advances the list by n+1 steps from the beginning, while the second pointer
+starts from the beginning of the list. Now, both pointers are separated by exactly n nodes. We maintain
+this constant gap by advancing both pointers together until the first pointer arrives past the last 
+node. The second pointe rwill be pointing at the nth node counting from the last. We relink the next
+pointer of the node referenced by the second pointer to point to the node's next next node. 
+
+
+
+```
+Maintaining N=2 nodes apart between the first and second pointer 
+
+	D	-> 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+       first 	 Head 
+       second 
+
+			   |
+			   v
+
+
+	D	-> 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+
+```
 
 
 
