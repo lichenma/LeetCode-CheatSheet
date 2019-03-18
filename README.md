@@ -2707,7 +2707,7 @@ The previous algorithm could be optimized to one pass. Instead of one pointer, w
 pointers. The first pointer advances the list by n+1 steps from the beginning, while the second pointer
 starts from the beginning of the list. Now, both pointers are separated by exactly n nodes. We maintain
 this constant gap by advancing both pointers together until the first pointer arrives past the last 
-node. The second pointe rwill be pointing at the nth node counting from the last. We relink the next
+node. The second pointer will be pointing at the nth node counting from the last. We relink the next
 pointer of the node referenced by the second pointer to point to the node's next next node. 
 
 
@@ -2720,14 +2720,47 @@ Maintaining N=2 nodes apart between the first and second pointer
        first 	 Head 
        second 
 
-			   |
-			   v
+			   
+
+
+Move the first pointer N+1 steps 
+
+
+			     |
+			     v
 
 
 	D	-> 1 -> 2 -> 3 -> 4 -> 5 -> NULL
 
+      second     Head       First
+
+
+Move the first and second pointers together until the first pointer arrives past the last node 
+
+
+			     |
+			     v
+
+
+	D	-> 1 -> 2 -> 3 -> 4 -> 5 -> NULL
+		
+		 Head      Second           First
+
+Second pointer points to the nth node counting from last so link node to the node's next next node 
+
+
+
+				  |
+				  v
+
+
+	D	-> 1 -> 2 -> 3 ->   -> 5 -> NULL
+	         
+		 Head      Second           First
 ```
 
+
+```java 
 
 
 
