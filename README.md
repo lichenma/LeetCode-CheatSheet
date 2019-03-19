@@ -96,7 +96,8 @@ Chrome Version 71.0.3578.98
 19. [Remove Nth Node From End of List](#removeNthNodefromEndofList)
     1. [Two Pass Algorithm](#removeNthNodefromEndofListTwoPassAlgorithm)
     2. [One Pass Algorithm](#removeNthNodefromEndofListOnePassAlgorithm)
-
+20. [Valid Parentheses](#validParentheses)
+    1. [Stack](#validParenthesesStack)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2798,6 +2799,22 @@ Time Complexity: 	O(L) 	The algorithm makes one traversal of the list of L nodes
 
 Space Complexity: 	O(1)	Only constant extra space was used 
 ```
+
+
+
+
+
+
+
+<br><br><br>
+***
+<a name="validParentheses"></a>
+# 20-Valid Parentheses
+
+
+
+
+
 
 
 
