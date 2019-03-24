@@ -2937,7 +2937,20 @@ Let's look at a simple algorithm to deal with this problem
 
 <br><br>
 
-The reason we discussed this particular algorithm here is because the approach for the 
+The reason we discussed this particular algorithm here is because the approach for the approach for 
+the original problem derives its inspiration from this very solution. 
+
+
+If we try and follow the same approach for our original problem, then it simply won't work. The reason
+a simple counter based approach works above is because all the parenthesis are of the same type. So 
+when we encounter a closing bracket, we simply assume a corresponding opening matching bracket 
+to be available ie. if `left>0`
+
+
+But in our problem, if we encounter say `]`, we don't really know if there is a corresponding opening
+`[` available or not. You could say: 
+
+> Why not maintain a separate counter for the different types of parenthesis? 
 
 
 
