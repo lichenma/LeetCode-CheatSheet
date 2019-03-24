@@ -2874,7 +2874,66 @@ Output: true
 
 
 
+**Intuition** 
 
+Imagine you are writing a small compiler for your college project and one of the tasks or sub-tasks for
+the compiler would be to detect if the parenthesis are in place or not. 
+
+
+
+The algorithm we will look at in this article can be then used to process all the parenthesis in the 
+program your compiler is compiling and checking if all the parenthesis are in place. This makes 
+checking if a given string of parenthesis is valid or not, an important programming problem. 
+
+
+
+The expressions that we will deal with in this problem can consist of three different types of 
+parenthesis: 
+
+
+- () 
+- {}
+- []
+
+
+Before looking at how we can check if a given expression consisting of thes parenthesis is valid or 
+not, let us look at a simpler version of the problem that consists of just one type of parenthesis. So,
+the expressions we can encounter in this simplified version of the problem are: 
+
+
+```
+(((((()))))) -- VALID
+
+()()()()     -- VALID
+
+(((((((()    -- INVALID
+
+((()(())))   -- VALID
+```
+
+
+Let's look at a simple algorithm to deal with this problem 
+
+1. We process the expression one bracket at a time starting from the left 
+2. Suppose we encounter an opening bracket ie. `(`, it may or may not be an invalid expression because
+   there can be a matching ending bracket somewhere in the remaining part of the expression. Here, we 
+   simply increment the counter keeping track of the left parenthesis till now. `left += 1`
+3. If we encounter a closing bracket, this has two meanings: 
+   
+   - There was no matching opening bracket for this closing bracket and in that case we have an invalid
+     expression. This is the case when `left==0` ie. when there are no unmatched left brackets 
+     available
+   
+   - We had some unmatched opening bracket available to match this closing bracket. This is the case 
+     when `left>0` ie. we have unmatched left brackets available 
+
+4. If we encounter a closing bracket ie. `)` when left==0, then we have an invalid expression on our 
+   hands. Else, we decrement `left` thus reducing the number of unmatched left parenthesis available.
+5. Continue processing the string until all parenthesis have been processed
+6. If in the end we still have an unmatched left parenthesis available, this implies an invalid 
+   expression 
+
+The reason we discussed this particular algorithm here is because the approach for the 
 
 
 
