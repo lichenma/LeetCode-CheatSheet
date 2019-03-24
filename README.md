@@ -3003,7 +3003,45 @@ problem. We can't really process this from the inside out because we don't have 
 overall structure. But, the stack can help us process this recursively ie. from outside to inwards.
 ```
 
-Lets take a look at the algorithm for this 
+Lets take a look at the algorithm for this problem using stacks as the intermediate data structure. 
+
+
+**Algorithm** 
+
+1. Initialize a stack S. 
+2. Process each bracket of the expression one at a time 
+3. If we encounter an opening bracket, we simply push it onto the stack. This means we will process it
+   later, let us simply move onto the sub-expression ahead 
+4. If encounter a closing bracket, then we check the element on top of the stack. If the element at the
+   top of the stack is an opening bracket `of the same type`, then we pop it off the stack and continue
+   processing. Else, this implies an invalid expression 
+5. In the end, if we are left with a stack still having elements, then this implies an invalid 
+   expression
+
+Lets take a look at the implementation for this algorithm
+
+
+
+```java 
+class Solution {
+	
+	//Hash table that takes care of the mappings
+	private HashMap<Character, Character> mappings; 
+
+	//Initialize the hash map with mappings. This simply makes the code easier to read 
+	public Solution() {
+		
+		this.mappings = new HashMap<Character, Character>(); 
+		this.mappings.put(')', '(');
+		this.mappings.put('}', '{');
+		this.mappings.put(']', '[');
+	}
+
+	public boolean isValid(String s) { 
+		
+		// 
+	}
+}
 
 
 
