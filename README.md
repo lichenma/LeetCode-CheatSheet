@@ -2972,8 +2972,38 @@ breaks here.
 <a name="validParenthesesStack"></a>
 ## Stacks 
 
-An interesting property about a valid parenthesis expression is that a sub-expression 
+An interesting property about a valid parenthesis expression is that a sub-expression. (Not every 
+sub-expression) eg. 
 
+```
+	{ [ [ ] { } ] } ( ) ( ) 
+
+	  ^         ^
+	  |         |
+```
+
+The entire expression is valid, but sub portions of it are also valid in themselves. This lends a sort 
+of a recursive structure to the problem. For example consider the expression enclosed within the 
+marked parenthesis in the diagram above. The opening bracket is at index `1` and the corresponding 
+closing bracket is at index `6`. 
+
+
+> What if whenever we encounter a matching pair of parenthesis in the expression we simply remove it
+> from the expression? 
+
+
+Let's have a look at this idea below where we remove the smaller expressions one at a time from the 
+overall expression and since this is a valid expression, we would be left with an empty string in the
+end. 
+
+
+```
+The stack data structure can come in handy here in representing this recursive structure of the 
+problem. We can't really process this from the inside out because we don't have an idea about the 
+overall structure. But, the stack can help us process this recursively ie. from outside to inwards.
+```
+
+Lets take a look at the algorithm for this 
 
 
 
