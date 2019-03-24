@@ -2914,6 +2914,8 @@ the expressions we can encounter in this simplified version of the problem are:
 
 Let's look at a simple algorithm to deal with this problem 
 
+<br><br>
+
 1. We process the expression one bracket at a time starting from the left 
 2. Suppose we encounter an opening bracket ie. `(`, it may or may not be an invalid expression because
    there can be a matching ending bracket somewhere in the remaining part of the expression. Here, we 
@@ -2932,6 +2934,8 @@ Let's look at a simple algorithm to deal with this problem
 5. Continue processing the string until all parenthesis have been processed
 6. If in the end we still have an unmatched left parenthesis available, this implies an invalid 
    expression 
+
+<br><br>
 
 The reason we discussed this particular algorithm here is because the approach for the 
 
