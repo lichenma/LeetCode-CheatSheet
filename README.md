@@ -97,7 +97,8 @@ Chrome Version 71.0.3578.98
     1. [Two Pass Algorithm](#removeNthNodefromEndofListTwoPassAlgorithm)
     2. [One Pass Algorithm](#removeNthNodefromEndofListOnePassAlgorithm)
 20. [Valid Parentheses](#validParentheses)
-    1. [Stack](#validParenthesesStack)
+    1. [Counting Method](#validParenthesesCounting)
+    2. [Stack](#validParenthesesStack)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -2869,8 +2870,8 @@ Output: true
 
 
 <br><br>
-<a name="validParenthesesStack"></a>
-## Stack 
+<a name="validParenthesesCounting"></a>
+## Counting method
 
 
 
@@ -2950,8 +2951,28 @@ to be available ie. if `left>0`
 But in our problem, if we encounter say `]`, we don't really know if there is a corresponding opening
 `[` available or not. You could say: 
 
-> Why not maintain a separate counter for the different types of parenthesis? 
+> Why not maintain a separate counter for the different types of parenthesis?
 
+This doesn't work because the relative placement of the parenthesis also matters here eg: `[{]`
+
+<br><br> 
+
+If we simply keep counters here, then as soon as we encounter the closing square bracket, we would 
+know there is an unmatched opening square bracket available as well. But, the **closest unmatched 
+opening bracket available is a curly bracket and not a square bracket and hence the counting approach
+breaks here. 
+
+
+
+
+
+
+
+<br><br>
+<a name="validParenthesesStack"></a>
+## Stacks 
+
+An interesting property about a valid parenthesis expression is that a sub-expression 
 
 
 
