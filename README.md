@@ -3130,7 +3130,13 @@ class solution {
 <a name="mergeTwoSortedListsNonRecursive"></a>
 ## Non-Recursive 
 
+Similar approach and implemenation to the recursive solution above but a little more intuitive and 
+does not require memory being held on the stack (as the recursive program runs it has to store 
+variables on the stack so that when the program jumps back it is able to continue) 
 
+```java 
+
+```
 
 
 
