@@ -99,6 +99,8 @@ Chrome Version 71.0.3578.98
 20. [Valid Parentheses](#validParentheses)
     1. [Counting Method](#validParenthesesCounting)
     2. [Stack](#validParenthesesStack)
+21. [Merge Two Sorted Lists](#mergeTwoSortedLists)
+    1. [Recursive](#mergeTwoSortedListsRecursive)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -3080,6 +3082,21 @@ Time Complexity: 	O(n)	We simply traverse the given string one character at a ti
 Space Complexity: 	O(n)	In the worst case, when we push all opening brackets onto the stack, we
 				will end up pushing all the brackets onto the stack eg (((((((((((
 ```
+
+
+<br><br><br>
+***
+<a name="mergeTwoSortedLists"></a>
+# 21-Merge Two Sorted Lists
+
+
+
+
+
+
+
+
+
 
 
 
