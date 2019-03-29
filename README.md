@@ -101,10 +101,13 @@ Chrome Version 71.0.3578.98
     2. [Stack](#validParenthesesStack)
 21. [Merge Two Sorted Lists](#mergeTwoSortedLists)
     1. [Recursive](#mergeTwoSortedListsRecursive)
+    2. [Non-Recursive](#mergeTwoSortedListsNonRecursive)
+
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
-    
+* [Dynamic Programming](#dynamicProgramming)
+
 
 <br><br><br><br><br>
 ***
@@ -3548,6 +3551,14 @@ class Trie {
 	Time Complexity:  O(m)
 	Space Complexity: O(1)
 ```
+
+
+<br><br><br>
+***
+<a name="dynamicProgramming"></a>
+# Dynamic Programming 
+
+
 
 
 
