@@ -107,6 +107,7 @@ Chrome Version 71.0.3578.98
 ### Algorithms and Data Structures 
 * [Trie](#trie)
 * [Dynamic Programming](#dynamicProgramming)
+    1. [Fibonacci Numbers](#dynamicProgrammingFibonacciNumbers)
 
 
 <br><br><br><br><br>
@@ -3553,10 +3554,58 @@ class Trie {
 ```
 
 
+
+
 <br><br><br>
 ***
 <a name="dynamicProgramming"></a>
 # Dynamic Programming 
+
+
+Dynamic Programming is mainly an optimization over plain recursion. Whenever we see a recursive 
+solution that has repeated calls for the same inputs we can optimize it using Dynamic Programming. The
+idea is to simply store the results of the subproblems so that we do not have to re-compute them when
+needed later. This simple optimization reduces time complexities from exponential to polynomial. For 
+example, if we write the simple recursive solution for Fibonacci numbers, we get exponential time 
+complexity and if we optimize it by storing solutions of subproblems time complexity reduces to linear.
+
+We break a complex problem up into a collection of simpler subproblems and solve each of those 
+subproblems just once and storing their solutions using a memory-based data structure. 
+
+
+
+
+
+<br><br>
+<a name="dynamicProgrammingFibonacciNumbers"></a>
+## Fibonacci Numbers 
+
+
+**Approach 1: Recursion**
+
+```java 
+class fibonacci {
+	static int fib(int n) {
+		if (n<=1){
+			return n;
+		}
+		return fib(n-1) + fib(n-2);
+	}
+
+	public static void main(String args[]) {
+		int n=9; 
+		System.out.println(fib(n));
+	}
+}
+```
+
+Output : 34
+
+**Complexity Analysis** 
+
+```
+Time Complexity:	exponential	T(n) 	
+
 
 
 
