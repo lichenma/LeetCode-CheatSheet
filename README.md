@@ -3580,8 +3580,8 @@ subproblems just once and storing their solutions using a memory-based data stru
 <a name="dynamicProgrammingFibonacciNumbers"></a>
 ## Fibonacci Numbers 
 
-
-**Approach 1: Recursion**
+<br><br>
+### Approach 1: Recursion**
 
 ```java 
 class fibonacci {
@@ -3601,10 +3601,39 @@ class fibonacci {
 
 Output : 34
 
+
 **Complexity Analysis** 
 
 ```
-Time Complexity:	exponential	T(n) 	
+Time Complexity:	exponential	T(n) = T(n-1) + T(n-2) which is exponential 
+
+Space Complexity: 	O(n) 		if we consider the function call stack size, otherwise O(1)
+```
+
+<br><br>
+
+We can observe that this implementation does a lot of repeated work. This is a bad implementation for 
+the nth Fibonacci number. 
+
+```
+
+		       	   fib(5)
+
+                     /                \
+               fib(4)                fib(3)   
+             /        \              /       \ 
+         fib(3)      fib(2)         fib(2)   fib(1)
+        /    \       /    \        /      \
+  fib(2)   fib(1)  fib(1) fib(0) fib(1) fib(0)
+  /     \
+fib(1) fib(0)
+```
+
+
+<br><br> 
+### Approach 2: Dynamic Programming 
+
+
 
 
 
