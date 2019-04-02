@@ -3138,8 +3138,37 @@ Similar approach and implemenation to the recursive solution above but a little 
 does not require memory being held on the stack (as the recursive program runs it has to store 
 variables on the stack so that when the program jumps back it is able to continue) 
 
-```java 
 
+As with most other linked list solutions, a dummy node is utilized and two pointers are used to keep
+track of where we are in the the two linked lists. 
+
+```java 
+class solution {
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+		
+		ListNode returnNode = new ListNode(-1); 
+		ListNode headNode = returnNode; 
+		
+		while (l1 != null && l2 != null) {
+			if (l1.val <= l2.val) {
+				returnNode.next = l1;
+				l1 = l1.next;
+			} else {
+				returnNode.next = l2;
+				l2 = l2.next; 
+			}
+			returnNode = returnNode.next;
+		}
+
+		if (l1 == null) {
+			returnNode.next = l2;
+		} else if (l2 == null) {
+			returnNode.next = l1; 
+		}
+
+		return headNode.next; 
+	}
+}
 ```
 
 
