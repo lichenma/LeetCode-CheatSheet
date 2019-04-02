@@ -102,7 +102,10 @@ Chrome Version 71.0.3578.98
 21. [Merge Two Sorted Lists](#mergeTwoSortedLists)
     1. [Recursive](#mergeTwoSortedListsRecursive)
     2. [Non-Recursive](#mergeTwoSortedListsNonRecursive)
-
+22. [Generate Parentheses](#generateParentheses)
+    1. [Brute Force](#generateParenthesesBruteForce)
+    2. [Backtracking](#generateParenthesesBacktracking)
+    3. [Closure Number](#generateParenthesesClosureNumber)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -3170,6 +3173,15 @@ class solution {
 	}
 }
 ```
+
+
+
+
+
+<br><br><br>
+***
+<a name="generateParentheses"></a>
+# 22-Generate Parentheses
 
 
 
