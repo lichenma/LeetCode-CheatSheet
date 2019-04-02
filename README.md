@@ -3678,7 +3678,56 @@ Space Complexity: 	O(n)
 ### Approach 3: Space Optimized Dynamic Programming 
 
 
-We 
+We can optimize the space used in the above method by storing only the previous two numbers because
+that is all we need to the get the next Fibonacci Number in Series
+
+
+```java 
+class fibonacci {
+	
+	static int fib(int n) {
+		
+		int a=0, b=1, c;
+
+		if (n==0) {
+			return a; 
+		}
+
+		for (int i=2; i<=n; i++) {
+			c=a+b;
+			a=b;
+			b=c;
+		}
+		return b;
+	}
+
+	public static void main(String args[]) {
+		
+		int n=0;
+		System.out.println(fib(n));
+	}
+}
+```
+
+
+**Complexity Analysis** 
+
+```
+Time Complexity: 	O(n) 
+Space Complexity: 	O(1) 
+```
+
+
+
+<br><br> 
+### Further Exploration 
+
+There is also a O(logn) runtime method of implementing fibonacci using matrices and also a O(1) runtime
+method which uses the Fibonacci mathematical equation. 
+
+```
+Fn = ((sqrt(5)+1)/2)^n)sqrt(5)
+```
 
 
 
