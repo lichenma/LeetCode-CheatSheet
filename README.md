@@ -3194,6 +3194,157 @@ Given n=3, a solution set is:
 [
   "((()))",
   "(()())".
+  "(())()",
+  "()(())",
+  "()()()"
+]
+```
+
+
+<br><br>
+<a name="generateParenthesesBruteForce"></a>
+## Brute Force 
+
+**Intuition** 
+
+We can generate all 2^(2n) sequences of `(` and `)` characters. Then we can check if each one is valid
+
+<br>
+
+**Algorithm** 
+
+To generate all sequences, we use recursion. All sequences of length `n` is just `(` plus all sequences
+of length `n-1`, and then `)` plus all sequences of length `n-1`. 
+
+To check whether a sequence is valid, we keep track of `balance`, the net number of opening brackets 
+minuts closing brackets. If it falls below zero at any time, or doesn't end in zero, the sequence is 
+invalid - otherwise it is valid. 
+
+
+```java 
+class Solution {
+	
+	public List<String> generateParenthesis(int n) {
+		
+		List<String> combinations = new ArrayList(); 
+		generateAll(new char[2*n], 0, combinations);
+		return combinations;
+	}
+
+	public void generateAll(char[] current, int pos, List<String> result) {
+		
+		if(pos == current.length) {
+			
+			if (valid(current)) {
+				result.add(new String(current));
+			} 
+
+		} else {
+			current[pos] = '(';
+			generateAll(current, pos+1, result);
+			current[pos] = ')';
+			generateAll(current, pos+1, result);
+		
+		}
+	}
+
+	public boolean valid(char[] current) {
+		
+		int balance = 0; 
+		for (char c : current) {
+			
+			if(c == '(') {
+				balance++;
+			} else {
+				balance--;
+			}
+
+			if(balance < 0) {
+				return false; 
+			}
+		}
+		return (balance == 0);
+	}
+}
+```
+
+**Complexity Analysis**
+
+```
+Time Complexity: 	O(2^2n * n)	For each of 2^2n sequences, we need to create an validate the 
+					sequence, which takes O(n) work in the worst case 
+
+Space Complexity: 	O(2^2n * n) 	Naively, every sequence could be valid, see Closure number for
+					a tighter asymptotic bound 
+```
+
+
+
+
+<br><br>
+<a name="generateParenthesesBacktracking"></a>
+## Backtracking
+
+
+**Intuition and Algorithm** 
+
+Instead of adding `(` or `)` every time as we do in the Brute Force algorithm, let's only add them 
+when we know it will remain a valid sequence. We can do this by keeping track of the number of opening
+and closing brackets we have placed so far. 
+
+We can start an opening bracket if we still have one (of `n`) left to place. And we can start a closing
+bracket if it would not exceed the number of opening brackets 
+
+
+```java 
+class Solution {
+	
+	public List<String> generateParenthesis(int n) {
+		
+		List<String> ans = new ArrayList(); 
+		backtrack(ans, "", 0, 0, n);
+		return ans; 
+	}
+
+	public void backtrack(List<String> ans, String cur, int open, int close, int max){
+		
+		if (cur.length() == max*2) {
+			ans.add(cur);
+			return;
+		}
+
+		if(open < max) {
+			backtrack(ans, cur + "(", open + 1, close, max);
+		} 
+		
+		if (close < open) {
+			backtrack(ans, cur + ")", open, close +1, max);
+		}
+	}
+}
+```
+
+**Complexity Analysis** 
+
+Our complexity analysis rests on understanding how many elements there are in `generateParenthesis(n)`.
+This analysis is outside the scope of this article, but it turns out this is the nth Catalan number 
+1/(n+1) (2n choose n), which is bounded asymptotically by 4^n/(n* sqrt(n)). 
+
+```
+Time Complexity: 	O((4^n)/sqrt(n))	Each valid sequence has at most n steps during the 
+						backtracking procedure
+
+Space Complexity: 	O((4^n)/sqrt(n))	As described above and using O(n) space to store the
+						sequence
+```
+
+Another way to think about the runtime of backtracking algorithms on interviewers is O(b^d), where b is
+the branching factor and d is the maximum depth of recursion. 
+
+Backtracking is 
+
+
+
 
 
 
