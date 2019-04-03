@@ -3341,7 +3341,8 @@ Space Complexity: 	O((4^n)/sqrt(n))	As described above and using O(n) space to s
 Another way to think about the runtime of backtracking algorithms on interviewers is O(b^d), where b is
 the branching factor and d is the maximum depth of recursion. 
 
-Backtracking is 
+Backtracking is characterized by a number of decisions b that can be made at each level of recursion. 
+If you visualize the recursion tree, this is the number of children each internal node has. 
 
 
 
