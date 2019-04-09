@@ -1,7 +1,7 @@
 # LeetCode - CheatSheet
 
 A compilation of notes that I made when working with Leetcode problems - Note a majority of the content and code was taken off of 
-the solution and discuss sections of the Leetcode website so I do not take any owenership of the below. The following is simply 
+the solution and discuss sections of the Leetcode website so I do not take any ownership of the below. The following is simply 
 notes compiled for learning purposes.
 
 
