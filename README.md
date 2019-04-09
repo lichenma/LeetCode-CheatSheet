@@ -106,6 +106,12 @@ Chrome Version 71.0.3578.98
     1. [Brute Force](#generateParenthesesBruteForce)
     2. [Backtracking](#generateParenthesesBacktracking)
     3. [Closure Number](#generateParenthesesClosureNumber)
+23. [Merge k Sorted Lists](#mergeKSortedLists)
+    1. [Brute Force](#mergeKSortedListsBruteForce)
+    2. [Compare One by One](#mergeKSortedListsCompareOnebyOne)
+    3. [Priority Queue Optimization](#mergeKSortedListsPriorityQueueOptimization)
+    4. [Merge Lists One by One](#mergeKSortedListsMergeListsOnebyOne)
+    5. [Merge with Divide and Conquer](#mergeKSortedListsMergewithDivideandConquer)
 
 ### Algorithms and Data Structures 
 * [Trie](#trie)
@@ -3382,8 +3388,46 @@ must be a valid sequence.
 
 
 This is just some minor improvement to the backtracking solution using the fact that for all valid 
-solu
+solutions the first char is always '(' and the lat char is always ')'. We initialize the starting 
+string to '(' and set the recursion bottom condition to string reaching length of `2 * n - 1` - we know
+that we need to append a bracket at the end. There will not be much of an improvement in the runtime
+however. 
 
+
+```java 
+class Solution {
+	public List<String> generateParenthesis(int n) {
+		List<String> ans = new ArrayList(); 
+		if (n==0) {
+			ans.add("");
+		} else {
+			for (int c=0; c<n; ++c)
+				for (String left: generateParenthesis(c))
+					for (String right: generateParenthesis(n-1-c))
+						ans.add("(" + left + ")" + right);
+		}
+		return ans;
+	}
+}
+```
+
+**Complexity Analysis** 
+```
+Time Complexity: 	O((4^n)/sqrt(n))
+
+Space Complexity: 	O((4^n)/sqrt(n))
+```
+
+
+
+
+
+<br><br><br>
+***
+<a name="mergeKSortedLists"></a>
+# 23-Merge k Sorted Lists 
+
+Merge k sorted linked lists and return it as one sorted list. Analyze and descibe 
 
 
 
