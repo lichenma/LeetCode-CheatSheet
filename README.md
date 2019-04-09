@@ -3342,8 +3342,47 @@ Another way to think about the runtime of backtracking algorithms on interviewer
 the branching factor and d is the maximum depth of recursion. 
 
 Backtracking is characterized by a number of decisions b that can be made at each level of recursion. 
-If you visualize the recursion tree, this is the number of children each internal node has. 
+If you visualize the recursion tree, this is the number of children each internal node has. You can
+also think of b as standing for "base", which helps us remember that b is the base of the exponential.
 
+If we make b decisions at each level of recursion, and we expand the recursion tree to d levels (ie. 
+each path has a length of d), then we get b^d nodes. Since backtracking is exhaustive and must visit 
+each of these nodes, the runtime is O(b^d)
+
+
+
+
+
+
+
+
+<br><br>
+<a name="generateParenthesesClosureNumber"></a>
+## Closure Number
+
+
+
+To enumerate something, generally we would like to express it as a sum of disjoint subsets that are 
+easier to count. 
+
+
+Consider the *closure number* of a valid parentheses sequence `s`: the least `index >= 0` so that 
+`S[0], S[1], ... , S[2 * index + 1] is valid. Clearly, every parentheses sequence has a unique closure
+number. We can try to enumerate them individually. 
+
+
+<br><br>
+
+**Algorithm** 
+
+For each closure number c, we know the starting and ending brackets must be at index `0` and 
+`2 * c + 1`. Then, the `2 * c` elements between must be a valid sequence, plus the rest of the elements
+must be a valid sequence.
+
+
+
+This is just some minor improvement to the backtracking solution using the fact that for all valid 
+solu
 
 
 
