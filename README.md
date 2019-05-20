@@ -42,76 +42,84 @@ Chrome Version 71.0.3578.98
 
 ## Quick Access Links 
 ### LeetCode 
-1. [Two Sum](#twoSum)
-    1. [Brute force](#twoSumBruteForce)
-    2. [One pass Hash Table](#twoSumOnePassHashTable) 
-2. [Add Two Numbers](#addTwoNumbers)
-    1. [Elementary Math Solution](#addTwoNumbersElementaryMath)
-3. [Substring No Repeat](#substringNoRepeat)
-    1. [Brute force](#substringNoRepeatBruteForce)
-    2. [Sliding Window](#substringNoRepeatSlidingWindow)
-    3. [Optimized Sliding Window](#substringNoRepeatOptimized)
-4. [Median of Two Sorted Arrays](#medianofTwoSortedArrays)
-    1. [Recursive Approach](#medianofTwoSortedArraysRecursiveApproach)
-5. [Longest Palindromic Substring](#longestPalindromicSubstring)
-    1. [Longest Common Substring](#longestPalindromicSubstringLongestCommonSubstring)
-    2. [Brute Force](#longestPalindromicSubstringBruteForce)
-    3. [Dynamic Programming](#longestPalindromicSubstringDynamicProgramming)
-    4. [Expand Around Center](#longestPalindromicSubstringExpandAroundCenter)
-    5. [Manacher's Algorithm](#longestPalindromicSubstringManacherAlgorithm)
-6. [ZigZag Conversion](#zigZagConversion)
-    1. [Sort by Row](#zigZagConversionSortbyRow)
-    2. [Visit by Row](#zigZagConversionVisitbyRow)
-7. [Reverse Integer](#reverseInteger)
-    1. [Pop and Push Digits and Check Before Overflow](#reverseIntegerPopandPush)
-8. [String to Integer](#stringtoInteger)
-    1. [ASCII Conversion](#stringtoIntegerASCII)
-9. [Palindrome Number](#palindromeNumber)
-    1. [Revert Half of the Number](#palindromeNumberRevertHalf)
-10. [Regular Expression Matching](#regularExpressionMatching)
-    1. [Recursion](#regularExpressionMatchingRecursion)
-    2. [Dynamic Programming](#regularExpressionMatchingDynamicProgramming)
-    3. [Non - Recursive](#regularExpressionMatchingNonRecursive)
-11. [Container With the Most Water](#containerwiththeMostWater)
-    1. [Brute Force](#containerwiththeMostWaterBruteForce)
-    2. [Two Pointer Approach](#containerwiththeMostWaterTwoPointer)
-12. [Integer To Roman](#integertoRoman)
-    1. [String Array](#integertoRomanStringArray)
-13. [Roman To Integer](#romantoInteger)
-    1. [Character Array](#romantoIntegerCharacterArray)
-14. [Longest Common Prefix](#longestCommonPrefix)
-    1. [Horizontal Scanning](#longestCommonPrefixHorizontalScanning)
-    2. [Vertical Scanning](#longestCommonPrefixVerticalScanning)
-    3. [Divide and Conquer](#longestCommonPrefixDivideandConquer)
-    4. [Further Thoughts](#longestCommonPrefixFurtherThoughts)
-15. [3Sum](#threeSum)
-    1. [Sorted Array](#threeSumSortedArray)
-16. [3Sum Closest](#threeSumClosest)
-    1. [3 Pointers](#threeSumClosestThreePointers)
-17. [Letter Combinations of a Phone Number](#letterCombinationsofaPhoneNumber) 
-    1. [Backtracking](#letterCombinationsofaPhoneNumberBacktracking)
-    2. [FIFO Queue](#letterCombinationsofaPhoneNumberFIFOQueue)
-18. [4Sum](#fourSum)
-    1. [Sorted Array](#fourSumSortedArray)
-19. [Remove Nth Node From End of List](#removeNthNodefromEndofList)
-    1. [Two Pass Algorithm](#removeNthNodefromEndofListTwoPassAlgorithm)
-    2. [One Pass Algorithm](#removeNthNodefromEndofListOnePassAlgorithm)
-20. [Valid Parentheses](#validParentheses)
-    1. [Counting Method](#validParenthesesCounting)
-    2. [Stack](#validParenthesesStack)
-21. [Merge Two Sorted Lists](#mergeTwoSortedLists)
-    1. [Recursive](#mergeTwoSortedListsRecursive)
-    2. [Non-Recursive](#mergeTwoSortedListsNonRecursive)
-22. [Generate Parentheses](#generateParentheses)
-    1. [Brute Force](#generateParenthesesBruteForce)
-    2. [Backtracking](#generateParenthesesBacktracking)
-    3. [Closure Number](#generateParenthesesClosureNumber)
-23. [Merge k Sorted Lists](#mergeKSortedLists)
-    1. [Brute Force](#mergeKSortedListsBruteForce)
-    2. [Compare One by One](#mergeKSortedListsCompareOnebyOne)
-    3. [Priority Queue Optimization](#mergeKSortedListsPriorityQueueOptimization)
-    4. [Merge Lists One by One](#mergeKSortedListsMergeListsOnebyOne)
-    5. [Merge with Divide and Conquer](#mergeKSortedListsMergewithDivideandConquer)
+- [LeetCode - CheatSheet](#leetcode---cheatsheet)
+	- [Getting Started](#getting-started)
+		- [Prerequisites](#prerequisites)
+	- [Built With](#built-with)
+	- [Authors](#authors)
+	- [Acknowledgments](#acknowledgments)
+	- [Quick Access Links](#quick-access-links)
+		- [LeetCode](#leetcode)
+- [1-Two Sum](#1-two-sum)
+	- [Brute Force](#brute-force)
+	- [One Pass Hash Table](#one-pass-hash-table)
+- [2-Add Two Numbers](#2-add-two-numbers)
+	- [Elementary Math Solution](#elementary-math-solution)
+- [3-Substring No Repeat](#3-substring-no-repeat)
+	- [Brute Force](#brute-force-1)
+	- [Sliding Window](#sliding-window)
+	- [Sliding Window Optimized](#sliding-window-optimized)
+- [4-Median of Two Sorted Arrays](#4-median-of-two-sorted-arrays)
+	- [Recursive Approach](#recursive-approach)
+- [5-Longest Palindromic Substring](#5-longest-palindromic-substring)
+	- [Longest Common Substring](#longest-common-substring)
+	- [Brute Force](#brute-force-2)
+	- [Dynamic Programming](#dynamic-programming)
+	- [Expand Around Center](#expand-around-center)
+	- [Manacher's Algorithm](#manachers-algorithm)
+- [6-ZigZag Conversion](#6-zigzag-conversion)
+	- [Sort by Row](#sort-by-row)
+	- [Visit by Row](#visit-by-row)
+- [7-Reverse Integer](#7-reverse-integer)
+	- [Pop and Push Digits and Check Before Overflow](#pop-and-push-digits-and-check-before-overflow)
+- [8-String to Integer (atoi)](#8-string-to-integer-atoi)
+	- [ASCII Conversion](#ascii-conversion)
+- [9-Palindrome Number](#9-palindrome-number)
+	- [Revert Half of the Number](#revert-half-of-the-number)
+- [10-Regular Expression Matching](#10-regular-expression-matching)
+	- [Recursion](#recursion)
+	- [Dynamic Programming](#dynamic-programming-1)
+	- [Non-Recursive](#non-recursive)
+- [11-Container with the Most Water](#11-container-with-the-most-water)
+	- [Brute Force](#brute-force-3)
+	- [Two Pointer Approach](#two-pointer-approach)
+- [12-Integer To Roman](#12-integer-to-roman)
+	- [String Array](#string-array)
+- [13-Roman to Integer](#13-roman-to-integer)
+	- [Character Array](#character-array)
+- [14-Longest Common Prefix](#14-longest-common-prefix)
+	- [Horizontal Scanning](#horizontal-scanning)
+	- [Vertical Scanning](#vertical-scanning)
+	- [Divide and Conquer](#divide-and-conquer)
+	- [Binary Search](#binary-search)
+	- [Further Thoughts](#further-thoughts)
+- [15-3Sum](#15-3sum)
+	- [Sorted Array](#sorted-array)
+- [16-3Sum Closest](#16-3sum-closest)
+	- [3 Pointers](#3-pointers)
+- [17-Letter Combinations of a Phone Number](#17-letter-combinations-of-a-phone-number)
+	- [Backtracking](#backtracking)
+	- [First In First Out (FIFO) Queue](#first-in-first-out-fifo-queue)
+- [18-4Sum](#18-4sum)
+	- [Sorted Array](#sorted-array-1)
+- [19-Remove Nth Node From End of List](#19-remove-nth-node-from-end-of-list)
+	- [Two Pass Algorithm](#two-pass-algorithm)
+	- [One Pass Algorithm](#one-pass-algorithm)
+- [20-Valid Parentheses](#20-valid-parentheses)
+	- [Counting method](#counting-method)
+	- [Stacks](#stacks)
+- [21-Merge Two Sorted Lists](#21-merge-two-sorted-lists)
+	- [Recursive](#recursive)
+	- [Non-Recursive](#non-recursive-1)
+- [22-Generate Parentheses](#22-generate-parentheses)
+	- [Brute Force](#brute-force-4)
+	- [Backtracking](#backtracking-1)
+	- [Closure Number](#closure-number)
+- [23-Merge k Sorted Lists](#23-merge-k-sorted-lists)
+	- [Brute Force](#brute-force-5)
+- [146-LRU Cache](#146-lru-cache)
+
+
 
 
 <br><br><br><br><br>
@@ -3467,3 +3475,28 @@ As for sorting you can refer to the Algorithms/Data Structures CheatSheet for mo
 
 
 
+<br><br><br>
+***
+<a name="lruCache"></a>
+# 146-LRU Cache 
+
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: `get` and `put`. 
+
+`get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return `-1` 
+
+`put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item. 
+
+**Follow up:**
+Could both of these operations be done in **O(1)** time complexity?
+
+**Example:**
+```
+LRUCache cache = new LRUCache(2 /* capacity */);
+
+cache.put(1, 1);
+cache.put(2, 2);
+cache.get(1); 			// returns 1 
+cache.put(3, 3); 		// evicts key 2
+cache.get(2);			// returns -1 (not found)
+	
+```
